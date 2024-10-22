@@ -1,9 +1,9 @@
-
+import React from 'react'
 
 export default function page() {
     return (
         <div>
-            <h1>mansour</h1>
+            <h2>our staff</h2>
         </div>
     )
 }
