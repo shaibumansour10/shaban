@@ -1,18 +1,20 @@
+
+
 import Navbar from "@/components/backoffice/Navbar";
-import Sidebar from "@/components/backoffice/Sidebar";
+import Sidebar from "@/components/backoffice/Sidebar"
 import React from 'react'
 export default function layout({ children }) {
 
   return (
-    <div className='flex'>
-      {/*sid*/}
-      <sidebar />
+    <div className='flex gap-2'>
+      {/*sidebar*/}
+      <Sidebar />
       {/*main body*/}
-      <div className='flex w-full'>
+      <div className='w-full'>
         {/*Header*/}
         <Navbar />
         {/* main content*/}
-        <main>
+        <main className="ml-60 p-8 bg-slate-900 text-slate-50 min-h-screen mt-16">
           {children}
         </main>
       </div>
