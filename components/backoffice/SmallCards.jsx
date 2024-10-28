@@ -1,6 +1,6 @@
 import React from 'react'
 import SmallCard from "./SmallCard"
-import { CheckCheck, RefreshCcw, ShoppingCart } from 'lucide-react';
+import { CheckCheck, Loader2, RefreshCcw, ShoppingCart } from 'lucide-react';
 export default function SmallCards() {
     const orderstatus = [
         {
@@ -13,7 +13,7 @@ export default function SmallCards() {
             Title: "order pending",
             number: 13000,
             IconBg: "w-12 h-12  rounded-full bg-blue-600  flex items-center justify-center ",
-            Icon: ShoppingCart,
+            Icon: Loader2,
         },
         {
             Title: "order processing",

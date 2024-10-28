@@ -1,3 +1,4 @@
+import DashboardCarts from "@/components/backoffice/DashboardCarts"
 import Heading from "@/components/backoffice/Heading"
 import React from 'react'
 import LargeCards from "@/components/backoffice/LargeCards"
@@ -11,6 +12,7 @@ export default function page() {
             {/*Small Cards */}
             <SmallCards />
             {/*Charts*/}
+            <DashboardCarts />
             {/*Recent Order Table */}
         </div>
     )
