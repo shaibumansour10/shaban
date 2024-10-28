@@ -1,4 +1,5 @@
 
+
 import React from 'react'
 
 export default function SmallCard({ data }) {
@@ -8,7 +9,7 @@ export default function SmallCard({ data }) {
     return (
         <div className={'rounded-lg  text-white shawod-lg bg-slate-700 p-4'}>
             <div className="flex space-x-4">
-                <div className={'w-12 h-12${IconBg} rounded-full item-center flex justify-center'}>
+                <div className={IconBg}>
                     <Icon className='' />
                 </div>
                 <div className="">

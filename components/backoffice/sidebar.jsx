@@ -7,8 +7,8 @@ export default function Sidebar() {
             <Link className='mt-6' href="#">logo</Link>
 
             <div className='space-y-3 flex flex-col'>
-                <Link href="#">Dashboard</Link>
-                <Link href="#">Catalogue</Link>
+                <Link href="/dashboard">Dashboard</Link>
+                <Link href="/dashboard/catalogue">Catalogue</Link>
                 <Link href="#">markerts</Link>
                 <Link href="#">orders</Link>
                 <Link href="#">our staff</Link>
