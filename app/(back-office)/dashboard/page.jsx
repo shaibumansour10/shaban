@@ -1,3 +1,4 @@
+import CustomerDataTable from "@/components/backoffice/CustomerDataTable"
 import DashboardCarts from "@/components/backoffice/DashboardCarts"
 import Heading from "@/components/backoffice/Heading"
 import React from 'react'
@@ -14,6 +15,7 @@ export default function page() {
             {/*Charts*/}
             <DashboardCarts />
             {/*Recent Order Table */}
+            <CustomerDataTable />
         </div>
     )
 }

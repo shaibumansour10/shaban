@@ -1,104 +1,122 @@
-data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })
-),
-    "use client"
+"use client"
 import React, { useState } from 'react'
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-} from "chart.js";
-import { Line } from "react-chartjs-2";
-import faker from "@faker-js/faker";
+import data from '../../data.json'
 
-export default function WeeklySalesCart() {
-    ChartJS.register(
-        CategoryScale,
-        LinearScale,
-        PointElement,
-        LineElement,
-        Title,
-        Tooltip,
-        Legend,
-    );
-    const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: "top"
-            },
-            title: {
-                display: true,
-                text: "Chart.js Line Chart"
-            }
-        }
-    };
-    const labels = ["January", "February", "March", "April", "May", "June", "July"];
-    const data = {
-        labels,
-        datasets: [
-            {
-                label: "Dataset 1",
-                data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })
-                ),
-                borderColor: "rgb(255, 99, 132)",
-                backgroundColor: "rgba(255, 99, 132, 0.5)"
-            }
-
-        ]
-    };
-    const tabs = [
-        {
-            title: "sales",
-            type: "sales"
-        },
-        {
-            title: "orders",
-            type: "orders"
-        }
-    ]
-    const [chartToDisplay, setChartToDisplay] = useState(tabs[0].type);
+export default function CustomerDataTable() {
+    const PAGE_SIZE = 10;
+    const arr = [1, 2, 3, 4, 5];
+    const [currentPage, setCurrentPage] = useState(1);
+    const startIndex = (currentPage - 1) * PAGE_SIZE;
+    const endIndex = currentPage + PAGE_SIZE;
+    const currentlyDisplayedData = data.slice(startIndex, endIndex);
+    const totalPages = Math.ceil(data.length / PAGE_SIZE);
+    const itemStartIndex = startIndex + 1;
+    const itemEndIndex = Math.min(startIndex + PAGE_SIZE, data.length);
+    console.log(data)
+    function handlePageChange(page) {
+        console.log(page)
+    }
     return (
-        <div className='bg-slate-700 p-8 rounded-lg'>
-            <h2 className='text-xl font-bold mb-4'>best selling Products</h2>
-            <div className='p-4'>
-                {/*tabs */}
-                <div className=" text-sm font-medium text-center text-gray-200 border-b
-                 border-gray-200 dark:text-gray-400 dark:border-gray-700">
-                    <ul className="flex flex-wrap -mb-px">
-                        {
-                            tabs.map((tab, i) => {
-                                return (
-                                    <li className="me-2 key={i}">
-                                        <button onClick={() => setChartToDisplay(tab.type)}
-                                            className={chartToDisplay == tab.type ?
-                                                "inline-block p-4 text-orange-600 border-b-2 border-orange-600 rounded-t-lg active dark:text-orange-500 dark:border-orange-500" :
-                                                "inline-block p-4 border-b-2 border-transparentrounded-t-lg hover:text-gray-300 hover:border-gray-100 dark:hover:text-gray-300"}>{tab.title}</button>
-                                    </li>
-                                )
-                            })
-                        }
+        <div className=' bg-slate-700 p-8 rounded-lg mt-8'>
+            < h2 className='text-xl font-bold mb-4' > Recent orders</ h2>
+            {/*table */}
 
 
-                    </ul>
+            <div className="p-8">
+                <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            {<tr>
+                                <th scope="col" className="p-4">
+                                    <div className="flex items-center">
+                                        <input id="checkbox-all-search" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                        <label for="checkbox-all-search" className="sr-only">checkbox</label>
+                                    </div>
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Id
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    First name
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Last Name
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Email
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Gender
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Action
+                                </th>
+                            </tr>}
+                        </thead>
+                        <tbody>
+                            {
+                                currentlyDisplayedData.map((item, i) => {
+                                    return (
+                                        <tr key={i} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                            <td className="w-4 p-4">
+                                                <div className="flex items-center">
+                                                    <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                                    <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
+                                                </div>
+                                            </td>
+                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                {item.id}
+                                            </th>
+
+                                            <td className="px-6 py-4">
+                                                {item.first_name}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {item.last_name}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {item.email}
+                                            </td>
+
+
+                                            <td className="px-6 py-4">
+                                                {item.gender}
+                                            </td>
+                                            <td className="flex items-center px-6 py-4">
+                                                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
+
+                        </tbody>
+                    </table>
+                    <nav className="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">
+                        <span className="text-sm font-normal text-gray-500 dark:text-gray-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing <span className="font-semibold text-gray-50 dark:text-white">{itemStartIndex}-{itemEndIndex}</span> of <span className="font-semibold text-gray-50 dark:text-white">{data.length}</span></span>
+                        <ul className="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
+                            <li>
+                                <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage == 1} className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</button>
+                            </li>
+                            {
+                                Array.from({ length: totalPages }, (_, index) => {
+                                    return (
+                                        <li key={index}>
+                                            <button onClick={() => setCurrentPage(index + 1)} disabled={currentPage == index + 1} className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{index + 1}</button>
+                                        </li>
+                                    )
+                                })
+                            }
+
+                            <li>
+                                <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage == totalPages} className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</button>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
 
-
-                {/*graph */}
-                {
-                    tabs.map((tab, i) => {
-                        if (chartToDisplay === tab.type) {
-                            return
-                            <Line options={options} data={data} />
-                        }
-                        return null;
-                    })
-                }
             </div>
-        </div>
+        </div >
     )
 }
