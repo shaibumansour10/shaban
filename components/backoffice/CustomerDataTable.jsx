@@ -82,7 +82,9 @@ export default function CustomerDataTable() {
                             {
                                 Array.from({ length: totalPages }, (_, index) => (
                                     <li key={index}>
-                                        <button onClick={() => handlePageChange(index + 1)} disabled={currentPage === index + 1} className="flex items-center active:bg-green-400 justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{index + 1}</button>
+                                        <button onClick={() => handlePageChange(index + 1)} disabled={currentPage === index + 1} className={currentPage == index + 1 ? "flex items-center  justify-center px-3 h-8 leading-tight text-white-500 bg-green-600 border border-gray-300 hover:bg-green-900 hover:text-white-700 dark:bg-green-600 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" :
+                                            "flex items-center  justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                                        }>{index + 1}</button>
                                     </li>
                                 ))
                             }
