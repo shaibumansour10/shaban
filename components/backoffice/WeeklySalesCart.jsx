@@ -58,18 +58,18 @@ export default function WeeklySalesCart() {
     const [chartToDisplay, setChartToDisplay] = useState(tabs[0].type);
 
     return (
-        <div className='bg-slate-700 p-8 rounded-lg'>
-            <h2 className='text-xl font-bold mb-4'>Best Selling Products</h2>
+        <div className='bg-slate-200 dark:bg-slate-700 p-8 rounded-lg'>
+            <h2 className='text-xl font-bold mb-4 text-slate-900 dark:text-slate-100'>Weekly Sales</h2>
             <div className='p-4'>
                 {/* Tabs */}
-                <div className="text-sm font-medium text-center text-gray-200 border-b border-gray-200">
+                <div className="text-sm font-medium text-center dark:text-gray-200 text-gray-500 border-b dark:border-gray-200 border-gray-400">
                     <ul className="flex flex-wrap -mb-px">
                         {tabs.map((tab, i) => (
                             <li className="me-2" key={i}>
                                 <button onClick={() => setChartToDisplay(tab.type)}
                                     className={chartToDisplay === tab.type ?
                                         "inline-block p-4 text-orange-600 border-b-2 border-orange-600 rounded-t-lg active" :
-                                        "inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-300 hover:border-gray-100"}>
+                                        "inline-block p-4 border-b-2 border-transparent rounded-t-lg dark:hover:text-gray-300 hover:text-gray-500 dark:hover:border-gray-100 hover:border-gray-200"}>
                                     {tab.title}
                                 </button>
                             </li>

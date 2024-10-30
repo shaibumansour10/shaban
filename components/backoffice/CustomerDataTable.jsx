@@ -17,8 +17,8 @@ export default function CustomerDataTable() {
     }
 
     return (
-        <div className='bg-slate-700 p-8 rounded-lg mt-8'>
-            <h2 className='text-xl font-bold mb-4'>Recent Orders</h2>
+        <div className='dark:bg-slate-700 bg-slate-200 p-8 rounded-lg mt-8'>
+            <h2 className='text-xl font-bold mb-4 text-slate-900 dark:text-slate-50'>Recent Orders</h2>
             <div className="p-8">
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -72,8 +72,8 @@ export default function CustomerDataTable() {
                         </tbody>
                     </table>
                     <nav className="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">
-                        <span className="text-sm font-normal text-gray-500 dark:text-gray-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">
-                            Showing <span className="font-semibold text-gray-50 dark:text-white">{itemStartIndex}-{itemEndIndex}</span> of <span className="font-semibold text-gray-50 dark:text-white">{data.length}</span>
+                        <span className="text-sm font-normal text-gray-900 dark:text-gray-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">
+                            Showing <span className="font-semibold text-gray-400 dark:text-white">{itemStartIndex}-{itemEndIndex}</span> of <span className="font-semibold text-gray-400 dark:text-white">{data.length}</span>
                         </span>
                         <ul className="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
                             <li>

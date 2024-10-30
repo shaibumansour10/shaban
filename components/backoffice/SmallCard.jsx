@@ -7,7 +7,7 @@ export default function SmallCard({ data }) {
         Title, number, IconBg, Icon,
     } = data
     return (
-        <div className={'rounded-lg  text-white shawod-lg bg-slate-700 p-4'}>
+        <div className={'rounded-lg  dark:text-slate-50 text-slate-900  shawod-lg bg-slate-200 dark:bg-slate-700 p-4'}>
             <div className="flex space-x-4">
                 <div className={IconBg}>
                     <Icon className='' />

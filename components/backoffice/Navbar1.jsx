@@ -1,4 +1,4 @@
-{/*
+
 import { AlignJustify, Bell, LayoutDashboard, LogOut, Settings, Sun, SunIcon, User, X } from 'lucide-react'
 import Image from 'next/image'
 import {
@@ -124,4 +124,3 @@ export default function Navbar() {
     )
 }
 
- */}
