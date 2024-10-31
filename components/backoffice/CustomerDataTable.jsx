@@ -19,8 +19,8 @@ export default function CustomerDataTable() {
     return (
         <div className='dark:bg-slate-700 bg-slate-200 p-8 rounded-lg mt-8'>
             <h2 className='text-xl font-bold mb-4 text-slate-900 dark:text-slate-50'>Recent Orders</h2>
-            <div className="p-8">
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <div className="">
+                <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-8">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
