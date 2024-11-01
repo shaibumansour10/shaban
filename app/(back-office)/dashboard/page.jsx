@@ -15,7 +15,7 @@ export default function page() {
             {/*Charts*/}
             <DashboardCarts />
             {/*Recent Order Table */}
-           {/* <CustomerDataTable />*/}
+            <CustomerDataTable />
         </div>
     )
 }

@@ -13,14 +13,16 @@ import {
 import React from 'react'
 import Link from "next/link";
 
-export default function Navbar({setShowSidebar,showSidebar}) {
+export default function Navbar({ setShowSidebar, showSidebar }) {
     return (
-        <div className='flex items-center  justify-between bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 h-20 px-8 py-8  fixed top-0 w-full  z-50 sm:pr-[20rem]'>
+        <div className={showSidebar ? 'flex items-center  justify-between bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 h-20 px-8 py-8  fixed top-0 w-full  z-50 ' :
+            'flex items-center  justify-between bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 h-20 px-8 py-8  fixed top-0 w-full  z-50 sm:pr-[20rem]'
+        }>
             {/*Icons */}
             <Link href={"/dashboard"} className="sm:hidden">
-            Logo
+                Logo
             </Link>
-            <button   onClick={()=>setShowSidebar(!showSidebar)} className="text-lime-700 dark:text-lime-500">
+            <button onClick={() => setShowSidebar(!showSidebar)} className="text-lime-700 dark:text-lime-500">
                 <AlignJustify />
             </button>
             {/*3 Icons */}
