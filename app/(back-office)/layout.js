@@ -21,7 +21,7 @@ export default function Layout({ children }) {
         <Navbar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
         {/* Main Content */}
-        <main className="p-8 bg-slate-100 dark:bg-slate-900 text-slate-50 min-h-screen">
+        <main className="p-8 bg-slate-100 mt-20 dark:bg-slate-900 text-slate-50 min-h-screen">
           {children}
         </main>
       </div>
