@@ -3,10 +3,12 @@ import {generateSlug} from "@/lib/generateSlug"
 import TextAreaInput from "@/components/formInputs/TextAreaInput"
 import SubmitButton from "@/components/formInputs/SubmitButton"
 import TextInput from "@/components/formInputs/TextInput"
-import React from 'react'
+import React ,{useState} from 'react'
 import FormHeader from "@/components/backoffice/FormHeader"
+import ImageInput from "@/components/formInputs/ImageInput"
 import { useForm } from "react-hook-form"
 export default function NewCategory() {
+  const [imageUrl,setImageUrl]=useState("")
   const {register,handleSubmit,formState:{errors}}=useForm();
    async function onSubmit(data) {
     const slug =generateSlug(data.title)
@@ -42,6 +44,12 @@ export default function NewCategory() {
               error={errors}
               className="w-full"      
                     
+                />
+                <ImageInput
+                    imageUrl={imageUrl}
+                    setImageUrl={setImageUrl}
+                    endpoint="categoryImageUploader"
+                    label="category Image"
                 />
     </div>
     <SubmitButton
