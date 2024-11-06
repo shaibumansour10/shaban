@@ -38,12 +38,12 @@ export default function ImageInput({
         alt='image item'
         width={1000}
         height={667}
-        className='w-full h-64 object-cover'/>
+        className='w-full h-64 object-contain '/>
       ) : (
         <UploadDropzone
          endpoint={endpoint}
          onClientUploadComplete={(res)=>{
-            setImageUrl(res[0].fileUrl);
+            setImageUrl(res[0].url);
             toast.success("image uploaded")
             console.log("files:",res);
             console.log("uploadede completed");

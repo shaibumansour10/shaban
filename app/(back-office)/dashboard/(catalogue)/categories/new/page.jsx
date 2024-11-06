@@ -1,5 +1,6 @@
 "use client"
 import {generateSlug} from "@/lib/generateSlug"
+import {makePostRequest} from "@/lib/apiRequest"
 import TextAreaInput from "@/components/formInputs/TextAreaInput"
 import SubmitButton from "@/components/formInputs/SubmitButton"
 import TextInput from "@/components/formInputs/TextInput"
@@ -9,10 +10,15 @@ import ImageInput from "@/components/formInputs/ImageInput"
 import { useForm } from "react-hook-form"
 export default function NewCategory() {
   const [imageUrl,setImageUrl]=useState("")
-  const {register,handleSubmit,formState:{errors}}=useForm();
+  const [loading, setLoading]=useState(false)
+  const {register,reset,handleSubmit,formState:{errors}}=useForm();
    async function onSubmit(data) {
+    setLoading(true)
+    const endpoint="api/categories"
+    const resourceName="Categories"
     const slug =generateSlug(data.title)
     data.slug=slug
+    data.imageUrl=imageUrl
     {/*
             id =>auto
             title
@@ -22,6 +28,13 @@ export default function NewCategory() {
             
             */}
       console.log(data);
+      makePostRequest(
+        setLoading,
+        endpoint,
+        data,
+      resourceName,
+        reset
+        )
     
 }
   return (
@@ -53,7 +66,7 @@ export default function NewCategory() {
                 />
     </div>
     <SubmitButton
-                isLoading={false}
+                isLoading={loading}
                 buttonTitle="Create Category"
                 loadingButtonTitle="Create Category please wait..."
             />

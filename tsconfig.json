@@ -35,7 +35,7 @@
     "app/(back-office)/layout.js",
     "components/backoffice/sidebar.jsx",
     "app/layout.js"
-, "components/backoffice/Navbar.tsx"  ],
+, "components/backoffice/Navbar.tsx", "lib/apiRequest.js"  ],
   "exclude": [
     "node_modules"
   ]
