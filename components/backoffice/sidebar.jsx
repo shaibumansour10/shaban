@@ -19,11 +19,7 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
             icon: ShoppingBag,
             href: "/dashboard/products",
         },
-        {
-            title: "Attributes",
-            icon: Tag,
-            href: "/dashboard/attributes",
-        },
+       
         {
             title: "Banners",
             icon: Monitor,
@@ -40,9 +36,9 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
             href: "/dashboard/coupons",
         },
         {
-            title: "Store Sliders",
+            title: "Store banners",
             icon: Sliders,
-            href: "/dashboard/store",
+            href: "/dashboard/banners",
         },
 
 

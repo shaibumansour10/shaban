@@ -30,7 +30,7 @@ export default function TextInput({label,
                 
                 />
                 {errors[`${name}`] && (
-                    <span className="text-sm text-red-600">{label}is required</span>
+                    <span className="text-sm text-red-600">{label} is required</span>
                 )}
             </div>
         </div>

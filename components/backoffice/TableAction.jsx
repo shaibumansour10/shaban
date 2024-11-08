@@ -3,7 +3,7 @@ import { Download, Search, Trash2 } from 'lucide-react'
 export default function TableAction() {
   return (
     <div className="flex justify-between py-6 px-12 dark:bg-slate-700 bg-slate-200 rounded-lg items-center gap-8 mt-8">
-    <button className='relative inline-flex items-center justify-center py-3 px-4 space-x-3 text-base font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-600 to-lime-500 group-hover:from-green-600 group-hover:to-lime-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800
+    <button className='relative inline-flex items-center justify-center py-3 px-4 space-x-3 text-base font-medium  rounded-lg group bg-gradient-to-br from-green-600 to-lime-500 group-hover:from-green-600 group-hover:to-lime-500  dark:text-white focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800
 '><Download/>
     <span>Export</span>
     </button>
