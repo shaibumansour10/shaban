@@ -19,7 +19,7 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
             icon: ShoppingBag,
             href: "/dashboard/products",
         },
-       
+
         {
             title: "Banners",
             icon: Monitor,
