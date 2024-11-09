@@ -77,7 +77,8 @@ export default function NewCategory() {
             register={register}
             errors={errors}
             className="w-full"
-            option={markets} />
+            option={markets}
+            />
           <TextAreaInput label="Category description"
             name="description"
             register={register}

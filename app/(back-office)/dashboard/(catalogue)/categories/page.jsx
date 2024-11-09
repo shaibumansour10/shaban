@@ -7,7 +7,7 @@ export default function page() {
   return (
     <div>
       {/*Header */}
-      <PageHeader heading="Categories" linkTitle="Add Categories" href="/dashboard/categories/new" />
+      <PageHeader heading="Categories" linkTitle="Add Category" href="/dashboard/categories/new" />
 
       {/*Table  Action*/}
       {/*Export // saerch // Bulk delete*/}

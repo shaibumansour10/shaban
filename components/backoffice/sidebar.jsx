@@ -1,6 +1,6 @@
 "use client"
 import Link from 'next/link'
-import logo from "../../public/logo.jpg.webp";
+import logo from "../../public/logo.png";
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react'
 import Image from 'next/image'
