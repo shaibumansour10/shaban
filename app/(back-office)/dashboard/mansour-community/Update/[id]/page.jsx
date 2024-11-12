@@ -1,9 +1,9 @@
 import React from 'react'
 import Heading from "@/components/backoffice/Heading"
-export default function UpadateCategories() {
+export default function UpadateCommunity() {
   return (
     <div>
-       <Heading title="Update Categories"/>
+       <Heading title="Update Community"/>
     </div>
   )
 }

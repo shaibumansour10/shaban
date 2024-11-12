@@ -8,12 +8,14 @@ import ToggleInput from "@/components/formInputs/ToggleInput"
 import SelectInput from "@/components/formInputs/SelectInput"
 import React, { useState } from 'react'
 import FormHeader from "@/components/backoffice/FormHeader"
+// import ReactQuill from "react-quill";
+// import "react-quill/dist/quill.swon.css"
 import ImageInput from "@/components/formInputs/ImageInput"
 import { useForm } from "react-hook-form"
 import { title } from "process"
 export default function NewCommunty() {
   const [imageUrl, setImageUrl] = useState("")
-  const markets = [
+  const categories = [
     {
       id: 1,
       title: "sproutes  Market"
@@ -33,16 +35,45 @@ export default function NewCommunty() {
   ]
   const [loading, setLoading] = useState(false)
   const { register, reset, handleSubmit, formState: { errors } } = useForm();
+  //Quill Editor
+  const modules ={
+    toolbar:[
+        [{header:[1,2, false]}],
+        ["bold","italic","underline","strike","blockqoute"],
+        [{list: "ordered"},{list: "bullet"}],
+        ["link","color","image"],
+        [{"code-block":true}],
+        ["clean"],
+    ],
+};
+const formats =[
+  "header",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "link",
+  "indent",
+  "image",
+  "code-block",
+  "color",
+];
   async function onSubmit(data) {
     setLoading(true)
     const Endpoint = "api/community"
-    const resourceName = "Comunities"
+    const resourceName = "Communities"
     const slug = generateSlug(data.title)
     data.slug = slug
     data.imageUrl = imageUrl
     {/*
             id =>auto
+            expertId
             title
+            content=>richText
+            categoryId
             slag=>auto
             description
             image
@@ -67,20 +98,19 @@ export default function NewCommunty() {
     border-gray-200 rounded-lg shadow sm:p-6 md:p-8
     dark:bg-gray-800 dark:border-gray-700 mx-auto my-3 mt-6">
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-          <TextInput label="category Title"
+          <TextInput label="Community Title"
             name="title"
             register={register}
             errors={errors}
             className="w-full" />
-          <SelectInput label="Select Markets"
-            name="marketIds"
-            multiple="true"
+          <SelectInput label="Select Categories"
+            name="categoriesIds"
             register={register}
             errors={errors}
             className="w-full"
-            option={markets}
+            option={categories}
             />
-          <TextAreaInput label="Category description"
+          <TextAreaInput label="Community description"
             name="description"
             register={register}
             errors={errors}
@@ -88,20 +118,22 @@ export default function NewCommunty() {
           <ImageInput
             imageUrl={imageUrl}
             setImageUrl={setImageUrl}
-            endpoint="categoryImageUploader"
-            label="category Image"
+            endpoint="communityImageUploader"
+            label="Community Thumbnail"
           />
+          {/* content */}
+          {/* content end  */}
           
           <ToggleInput 
-          label="Publish Your Category"
+          label="Publish Your Community"
           name="isActive"
           trueTitle="Active"
           falseTitle="Draft"/>
         </div>
         <SubmitButton
           isLoading={loading}
-          buttonTitle="Create Category"
-          loadingButtonTitle="Create Category please wait..."
+          buttonTitle="Create Community"
+          loadingButtonTitle="Create Community please wait..."
         />
       </form>
 
