@@ -11,7 +11,7 @@ import FormHeader from "@/components/backoffice/FormHeader"
 import ImageInput from "@/components/formInputs/ImageInput"
 import { useForm } from "react-hook-form"
 import { title } from "process"
-export default function NewCategory() {
+export default function NewCommunty() {
   const [imageUrl, setImageUrl] = useState("")
   const markets = [
     {
