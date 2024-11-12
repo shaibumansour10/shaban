@@ -3,6 +3,7 @@ import { generateCouponCode } from "@/lib/generateCouponCode";
 import { makePostRequest } from "@/lib/apiRequest";
 import TextInput from "@/components/formInputs/TextInput";
 import React, { useState } from 'react';
+import ToggleInput from "@/components/formInputs/ToggleInput"
 import FormHeader from "@/components/backoffice/FormHeader";
 import SubmitButton from "@/components/formInputs/SubmitButton";
 import { useForm } from "react-hook-form";
@@ -61,6 +62,12 @@ export default function NewCoupon({ data }) {
             errors={errors}
            
           />
+          
+          <ToggleInput 
+          label="Publish Your Coupons"
+          name="isActive"
+          trueTitle="Active"
+          falseTitle="Draft"/>
         </div>
         <SubmitButton
           isLoading={loading}

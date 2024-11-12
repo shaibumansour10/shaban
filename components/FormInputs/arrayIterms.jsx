@@ -2,7 +2,7 @@
 import { Plus, X } from 'lucide-react'
 import React, { useState } from 'react'
 
-export default function ArrayItems({ setItems, items = [] }) {
+export default function ArrayItems({ setItems, items = [] ,itemTitle}) {
   const [item, setItem] = useState("");
   const [showTagForm, setShowTagForm] = useState(false);
 
@@ -60,7 +60,7 @@ export default function ArrayItems({ setItems, items = [] }) {
         ) : (
           <button onClick={() => setShowTagForm(true)} type="button" className="rounded-md flex items-center space-x-3 text-black dark:text-white px-2 py-2">
             <Plus />
-            <span>Add Tags</span>
+            <span>{itemTitle}</span>
           </button>
         )
       }

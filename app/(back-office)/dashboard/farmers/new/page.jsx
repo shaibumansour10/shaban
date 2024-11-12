@@ -2,6 +2,7 @@
 import { generateUserCode } from "@/lib/generateUserCode";
 import { makePostRequest } from "@/lib/apiRequest";
 import TextInput from "@/components/formInputs/TextInput";
+import ToggleInput from "@/components/formInputs/ToggleInput"
 import TextAreaInput from "@/components/formInputs/TextAreaInput";
 import React, { useState } from 'react';
 import FormHeader from "@/components/backoffice/FormHeader";
@@ -105,6 +106,12 @@ export default function NewFarmer({ data }) {
             errors={errors}
             isRequired={false}
           />
+          
+          <ToggleInput 
+          label="Publish Your Farmer"
+          name="isActive"
+          trueTitle="Active"
+          falseTitle="Draft"/>
         </div>
         <SubmitButton
           isLoading={loading}

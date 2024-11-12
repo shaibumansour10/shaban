@@ -35,8 +35,8 @@ export default function NewCategory() {
   const { register, reset, handleSubmit, formState: { errors } } = useForm();
   async function onSubmit(data) {
     setLoading(true)
-    const Endpoint = "api/categories"
-    const resourceName = "Categories"
+    const Endpoint = "api/community"
+    const resourceName = "Comunities"
     const slug = generateSlug(data.title)
     data.slug = slug
     data.imageUrl = imageUrl
@@ -60,7 +60,7 @@ export default function NewCategory() {
   }
   return (
     <div>
-      <FormHeader title="New Category" />
+      <FormHeader title="New Community" />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-4xl p-4 bg-white border

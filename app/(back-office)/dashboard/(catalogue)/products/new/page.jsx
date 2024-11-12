@@ -4,6 +4,7 @@ import { makePostRequest } from "@/lib/apiRequest"
 import TextAreaInput from "@/components/formInputs/TextAreaInput"
 import SubmitButton from "@/components/formInputs/SubmitButton"
 import ArrayIterms from "@/components/formInputs/ArrayIterms"
+import ToggleInput from "@/components/formInputs/ToggleInput"
 import TextInput from "@/components/formInputs/TextInput"
 import SelectInput from "@/components/formInputs/SelectInput"
 import React, { useState } from 'react'
@@ -52,11 +53,13 @@ export default function NewProduct() {
       title: "Farmer 4"
     },
   ];
-  const [tags, setTags]=useState(["tag1","tag4"]);
+  const [tags, setTags]=useState(["tag1","tag2"]);
  
   // TAGS END
   const [loading, setLoading] = useState(false)
   const { register, reset, handleSubmit, formState: { errors } } = useForm();
+ 
+  
   async function onSubmit(data) {
     setLoading(true)
     const Endpoint = "api/products"
@@ -148,7 +151,7 @@ export default function NewProduct() {
             label="Product Image"
           />
           
-          <ArrayIterms setItems={setTags} items={tags}/> 
+          <ArrayIterms setItems={setTags} itemTitle="Add Tag" items={tags}/> 
           <TextAreaInput label="Product description"
             name="description"
             register={register}
@@ -156,7 +159,11 @@ export default function NewProduct() {
           />
           {/* Tags */}
          
-          
+          <ToggleInput 
+          label="Publish Your Product"
+          name="isActive"
+          trueTitle="Active"
+          falseTitle="Draft"/>
         </div>
         <SubmitButton
           isLoading={loading}

@@ -4,19 +4,20 @@ import {makePostRequest} from "@/lib/apiRequest"
 import TextAreaInput from "@/components/formInputs/TextAreaInput"
 import SubmitButton from "@/components/formInputs/SubmitButton"
 import TextInput from "@/components/formInputs/TextInput"
+import ImageInput from "@/components/formInputs/ImageInput"
 import ToggleInput from "@/components/formInputs/ToggleInput"
 import React ,{useState} from 'react'
 import FormHeader from "@/components/backoffice/FormHeader"
-import ImageInput from "@/components/formInputs/ImageInput"
+
 import { useForm } from "react-hook-form"
 export default function NewMarkets() {
-  const [logoUrl,setLogoUrl]=useState("")
+  const [imageUrl,setImageUrl]=useState("")
   const [loading, setLoading]=useState(false)
   const {register,reset,handleSubmit,formState:{errors}}=useForm();
    async function onSubmit(data) {
     setLoading(true)
-    const endpoint="api/markets"
-    const resourceName="Market"
+    const endpoint="api/our-staff"
+    const resourceName="Staff"
     const slug =generateSlug(data.title)
     data.slug=slug
  
@@ -42,41 +43,82 @@ export default function NewMarkets() {
 }
   return (
     <div>
-    <FormHeader title="New Market"/>  
+    <FormHeader title="New Staff"/>  
     <form 
     onSubmit={handleSubmit(onSubmit)}
     className="w-full max-w-4xl p-4 bg-white border
     border-gray-200 rounded-lg shadow sm:p-6 md:p-8
     dark:bg-gray-800 dark:border-gray-700 mx-auto my-3 mt-6">
       <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-    <TextInput label="Market Title"
-         name="title"
+    <TextInput label="Full Name"
+         name="name"
          register={register}
          errors={errors}
+        
          />
-    <TextAreaInput label="Market Description"
-         name="description"
+    <TextInput label="Password"
+         name="password"
+         type="password"
          register={register}
          errors={errors}
+          className="w-full"
          />
+    <TextInput label="Phone Number"
+         name="phone"
+         type="number"
+         register={register}
+         errors={errors}
+          className="w-full"
+         />
+    <TextInput label="Email Address"
+         name="email"
+         register={register}
+         errors={errors}
+          className="w-full"
+         />
+    <TextInput label="Physical Address"
+         name="PhysicalAddress"
+         register={register}
+         errors={errors}
+          className="w-full"
+         />
+    <TextInput label="Joining Date"
+         name="date"
+         type="date"
+         register={register}
+         errors={errors}
+          className="w-full"
+         />
+    <TextInput label="Staff Role"
+         name="role"
+         register={register}
+         errors={errors}
+          className="w-full"
+         />
+    <TextAreaInput label="Notes"
+         name="notes"
+         register={register}
+         errors={errors}
+         isRequired={false}
+         
+         />
+          <ImageInput
+            imageUrl={imageUrl}
+            setImageUrl={setImageUrl}
+            endpoint="staffImageUploader"
+            label="Staff PIcture"
+            isRequired={false}
+          />
+   
     
-                <ImageInput
-                    imageUrl={logoUrl}
-                    setImageUrl={setLogoUrl}
-                    endpoint="marketLogoUploader"
-                    label="Market Logo"
-                />
+               
                 
-          <ToggleInput 
-          label="Publish Your Market"
-          name="isActive"
-          trueTitle="Active"
-          falseTitle="Draft"/>
+          
     </div>
     <SubmitButton
                 isLoading={loading}
-                buttonTitle="Create Market"
-                loadingButtonTitle="Create Market please wait..."
+                buttonTitle="Add staff"
+                loadingButtonTitle="Add Staff please wait..."
             />
     </form>
     

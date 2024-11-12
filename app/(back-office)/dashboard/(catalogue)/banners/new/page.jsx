@@ -4,6 +4,7 @@ import {makePostRequest} from "@/lib/apiRequest"
 import TextAreaInput from "@/components/formInputs/TextAreaInput"
 import SubmitButton from "@/components/formInputs/SubmitButton"
 import TextInput from "@/components/formInputs/TextInput"
+import ToggleInput from "@/components/formInputs/ToggleInput"
 import React ,{useState} from 'react'
 import FormHeader from "@/components/backoffice/FormHeader"
 import ImageInput from "@/components/formInputs/ImageInput"
@@ -67,6 +68,12 @@ export default function NewBanner() {
                     endpoint="BannerImageUploader"
                     label="Banner Image"
                 />
+                
+          <ToggleInput 
+          label="Publish Your Banner"
+          name="isActive"
+          trueTitle="Active"
+          falseTitle="Draft"/>
     </div>
     <SubmitButton
                 isLoading={loading}
