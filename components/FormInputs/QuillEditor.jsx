@@ -1,13 +1,12 @@
-import { useState } from "react";
+import React from 'react'
 import ReactQuill from "react-quill";
-import React from "react-quill";
-import "react-quill/dist/quill.swon.css"
+import "react-quill/dist/quill.snow.css"
 
-const [content,setContent]= useState("");
-//Custom Tool Bar
-const modules ={
+export default function QuillEditor({content,setContent}) {
+   
+  const modules ={
     toolbar:[
-        [{header:[1,2, false]}],
+        [{header:[1,2, false]}],   
         ["bold","italic","underline","strike","blockqoute"],
         [{list: "ordered"},{list: "bullet"}],
         ["link","color","image"],
@@ -16,31 +15,38 @@ const modules ={
     ],
 };
 const formats =[
-    "header",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "list",
-    "bullet",
-    "link",
-    "indent",
-    "image",
-    "code-block",
-    "color",
+  "header",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "link",
+  "indent",
+  "image",
+  "code-block",
+  "color",
 ];
-{/*content */}
-     <div className="sm:col-span-2">
-        <label
+  return (
+    <div className="sm:col-span-2">
+      <label
         htmlFor="content"
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-50">
-            Blog content
-        </label>
+        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-50"
+      >
+        Blog Content
+      </label>
+      <div className="quill-container bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
         <ReactQuill
-        theme="snow"
-        value={content}
-        onChange={setContent}
-        modules={modules}
-        formats={formats}/>
-     </div>
+          theme="snow"
+          value={content}
+          onChange={setContent}
+          modules={modules}
+          formats={formats}
+          className="bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-50 border border-gray-300 dark:border-gray-600 rounded-md"
+        />
+      </div>
+    </div>
+  )
+}

@@ -8,9 +8,9 @@ import ToggleInput from "@/components/formInputs/ToggleInput"
 import SelectInput from "@/components/formInputs/SelectInput"
 import React, { useState } from 'react'
 import FormHeader from "@/components/backoffice/FormHeader"
-// import ReactQuill from "react-quill";
-// import "react-quill/dist/quill.swon.css"
+
 import ImageInput from "@/components/formInputs/ImageInput"
+import QuillEditor from "@/components/formInputs/QuillEditor"
 import { useForm } from "react-hook-form"
 import { title } from "process"
 export default function NewCommunty() {
@@ -36,37 +36,14 @@ export default function NewCommunty() {
   const [loading, setLoading] = useState(false)
   const { register, reset, handleSubmit, formState: { errors } } = useForm();
   //Quill Editor
-  const modules ={
-    toolbar:[
-        [{header:[1,2, false]}],
-        ["bold","italic","underline","strike","blockqoute"],
-        [{list: "ordered"},{list: "bullet"}],
-        ["link","color","image"],
-        [{"code-block":true}],
-        ["clean"],
-    ],
-};
-const formats =[
-  "header",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "link",
-  "indent",
-  "image",
-  "code-block",
-  "color",
-];
+  const [content, setContent]=useState('');
   async function onSubmit(data) {
     setLoading(true)
     const Endpoint = "api/community"
     const resourceName = "Communities"
     const slug = generateSlug(data.title)
     data.slug = slug
+    data.content=content
     data.imageUrl = imageUrl
     {/*
             id =>auto
@@ -122,6 +99,7 @@ const formats =[
             label="Community Thumbnail"
           />
           {/* content */}
+          <QuillEditor content={content} setContent={setContent}/>
           {/* content end  */}
           
           <ToggleInput 
