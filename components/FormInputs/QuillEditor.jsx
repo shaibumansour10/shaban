@@ -2,7 +2,7 @@ import React from 'react'
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"
 
-export default function QuillEditor({content,setContent}) {
+export default function QuillEditor({content,setContent,label,className}) {
    
   const modules ={
     toolbar:[
@@ -30,12 +30,12 @@ const formats =[
   "color",
 ];
   return (
-    <div className="sm:col-span-2">
+    <div className={className}>
       <label
         htmlFor="content"
         className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-50"
       >
-        Blog Content
+       {label}
       </label>
       <div className="quill-container bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
         <ReactQuill

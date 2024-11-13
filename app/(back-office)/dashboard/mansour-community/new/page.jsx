@@ -45,6 +45,8 @@ export default function NewCommunty() {
     data.slug = slug
     data.content=content
     data.imageUrl = imageUrl
+    setImageUrl("");
+    setContent("");
     {/*
             id =>auto
             expertId
@@ -99,7 +101,10 @@ export default function NewCommunty() {
             label="Community Thumbnail"
           />
           {/* content */}
-          <QuillEditor content={content} setContent={setContent}/>
+          <QuillEditor content={content} setContent={setContent}
+          label="Blog content"
+          className="sm:col-span-2"
+          />
           {/* content end  */}
           
           <ToggleInput 

@@ -1,72 +1,150 @@
 "use client"
-import { Plus, X } from 'lucide-react'
-import React, { useState } from 'react'
+import {generateSlug} from "@/lib/generateSlug"
+import {makePostRequest} from "@/lib/apiRequest"
+import TextAreaInput from "@/components/formInputs/TextAreaInput"
+import SubmitButton from "@/components/formInputs/SubmitButton"
+import TextInput from "@/components/formInputs/TextInput"
+import ImageInput from "@/components/formInputs/ImageInput"
+import ToggleInput from "@/components/formInputs/ToggleInput"
+import React ,{useState} from 'react'
+import FormHeader from "@/components/backoffice/FormHeader"
 
-export default function arrayIterms({setItems,items=[]}) {
-  
-  const [item, setItem]=useState("");
-  const [showTagForm, setShowTagForm]=useState(false);
-function addItem(){
-  setItems([...items,item]);
-  setItem("");
-};
-function removeItem(index){
-  const newItems=[...items];
-  newItems.splice(index,1);
-setItems(newItems);
-
+import { useForm } from "react-hook-form"
+export default function NewMarkets() {
+  const [imageUrl,setImageUrl]=useState("")
+  const [loading, setLoading]=useState(false)
+  const {register,reset,handleSubmit,formState:{errors}}=useForm();
+   async function onSubmit(data) {
+    setLoading(true)
+    const endpoint="api/staffs"
+    const resourceName="Staff"
+    const slug =generateSlug(data.title)
+    data.slug=slug
+ 
+    data.imageUrl=imageUrl;
+    {/*
+           name 
+           password
+           email
+           phone
+           physicalAddress
+           NIN
+           DOB
+           notes
+           isActive
+            
+            */}
+            const code = gennerateUserCode("MSM",data.name);
+            data.code=code
+      console.log(data);
+      makePostRequest(
+        setLoading,
+        endpoint,
+        data,
+      resourceName,
+        reset
+        )
+        setImageUrl("")
+    
 }
   return (
-    <div className="sm:col-span-2">
-          {
-           showTagForm?(
-           <div className="flex items-center ">   
-            <label for="voice-search" className="sr-only">Search</label>
-            <div className="relative w-full">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                    <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.15 5.6h.01m3.337 1.913h.01m-6.979 0h.01M5.541 11h.01M15 15h2.706a1.957 1.957 0 0 0 1.883-1.325A9 9 0 1 0 2.043 11.89 9.1 9.1 0 0 0 7.2 19.1a8.62 8.62 0 0 0 3.769.9A2.013 2.013 0 0 0 13 18v-.857A2.034 2.034 0 0 1 15 15Z"/>
-                    </svg>
-                </div>
-                <input
-                value={item}
-                onChange={(e)=>setItem(e.target.value)}
-                type="text" id="voice-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-lime-500 focus:border-lime-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-lime-500 dark:focus:border-lime-500" placeholder="Create items...." />
-                <button type="button" className="absolute inset-y-0 end-0 flex items-center pe-3">
-                    
-                </button>
-            </div>
-            <button 
-            onClick={addItem}
-            type="button" className="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-lime-700 rounded-lg border border-lime-700 hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-lime-300 dark:bg-lime-600 dark:hover:bg-lime-700 dark:focus:ring-lime-800">
-               <Plus className="w-4 h-4 me-2"/>
-               Add
-            </button>
-            <button onClick={()=>setShowTagForm(false)} className="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-red-700 rounded-lg border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-              <X className="w-4 h-4 me-2"/>
-            </button>
-        </div>):(
-          <button onClick={()=>setShowTagForm(true)}
-           type="button"
-           className=" rounded-md flex items-center space-x-3 text-black dark:text-white px-2 py-2">
-             <Plus/>
-             <span>Add Tags</span>
-           </button>)
-          }
-          <div className="flex flex-wrap gap-8 mt-4">
-           {
-            items.map((item,i)=>{
-              return(
-                <div key={i} onClick={()=>{removeItem(i)}} className="cursor pointer flex space-x-2 bg-slate-300 dark:bg-slate-600 px-4 py2
-                items-center rounded-lg">
-                  <p>{item}</p>
-                  <X  className="w-4 h-4"/>
-                </div>
-              )
-            })
-           }
-          </div>
- 
-          </div>
+    <div>
+    <FormHeader title="New Staff"/>  
+    <form 
+    onSubmit={handleSubmit(onSubmit)}
+    className="w-full max-w-4xl p-4 bg-white border
+    border-gray-200 rounded-lg shadow sm:p-6 md:p-8
+    dark:bg-gray-800 dark:border-gray-700 mx-auto my-3 mt-6">
+      <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
+    <TextInput label="Full Name"
+         name="name"
+         register={register}
+         errors={errors}
+        
+         />
+    <TextInput label="NIN (Id Number)"
+         name="nin"
+         register={register}
+         errors={errors}
+          className="w-full"
+         />
+    <TextInput label="Password"
+         name="password"
+         type="password"
+         register={register}
+         errors={errors}
+          className="w-full"
+         />
+    <TextInput label="Phone Number"
+         name="phone"
+         type="number"
+         register={register}
+         errors={errors}
+          className="w-full"
+         />
+    <TextInput label="Email Address"
+         name="email"
+         register={register}
+         errors={errors}
+          className="w-full"
+         />
+    <TextInput label="Physical Address"
+         name="PhysicalAddress"
+         register={register}
+         errors={errors}
+          className="w-full"
+         />
+    <TextInput label="Date of Birth"
+         name="dob"
+         type="date"
+         register={register}
+         errors={errors}
+          className="w-full"
+         />
+    <TextInput label="Staff Role"
+         name="role"
+         register={register}
+         errors={errors}
+          className="w-full"
+         />
+    <TextAreaInput label="Notes"
+         name="notes"
+         register={register}
+         errors={errors}
+         isRequired={false}
+          className="w-full"
+         />
+          <ImageInput
+            imageUrl={imageUrl}
+            setImageUrl={setImageUrl}
+            endpoint="staffImageUploader"
+            label="Staff PIcture"
+            isRequired={false}
+          />
+   
+    
+   <ToggleInput 
+          label="Staff Status"
+          name="isActive"
+          trueTitle="Active"
+          falseTitle="Draft"/> 
+                
+          
+    </div>
+    <SubmitButton
+                isLoading={loading}
+                buttonTitle="Add staff"
+                loadingButtonTitle="Add Staff please wait..."
+            />
+    </form>
+    
+     {/*
+     -id
+     -title
+     -slug
+     -discription
+     -image
+     */}
+    </div>
   )
 }
