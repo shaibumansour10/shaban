@@ -32,7 +32,7 @@ export default function NewStaff({ data }) {
     
     // Set the Staff code in the form data before submitting
     data.StaffUniqueCode = StaffUniqueCode;
-    
+    data.imageUrl=imageUrl;
     console.log("Generated Staff Code:", staffUniqueCode);
     console.log("Form Data:", data);
     

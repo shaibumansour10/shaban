@@ -53,6 +53,7 @@ export default function NewCommunty() {
             title
             content=>richText
             categoryId
+            password=D4nt9ukSrBdGHPW5
             slag=>auto
             description
             image
