@@ -57,8 +57,10 @@ export default function NewProduct() {
  
   // TAGS END
   const [loading, setLoading] = useState(false)
-  const { register, reset, handleSubmit, formState: { errors } } = useForm();
- 
+  const {register,reset,watch,handleSubmit,formState:{errors}}=useForm({defaultValues:{
+    isActive:true,},});
+    const isActive = watch("isActive");
+console.log(isActive);
   
   async function onSubmit(data) {
     setLoading(true)
@@ -163,7 +165,9 @@ export default function NewProduct() {
           label="Publish Your Product"
           name="isActive"
           trueTitle="Active"
-          falseTitle="Draft"/>
+          falseTitle="Draft"
+          register={register}
+          />
         </div>
         <SubmitButton
           isLoading={loading}

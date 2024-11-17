@@ -14,8 +14,10 @@ export default function NewStaff({ data }) {
      const [imageUrl,setImageUrl]=useState("")
   const [loading, setLoading] = useState(false);
   const [staffUniqueCode, setStaffUniqueCode] = useState('');  // Set an empty string initially
-  const { register, reset, watch, handleSubmit, formState: { errors } } = useForm();
-  
+  const {register,reset,watch,handleSubmit,formState:{errors}}=useForm({defaultValues:{
+     isActive:true,},});
+     const isActive = watch("isActive");
+ console.log(isActive);
   // Watch form fields
 //   const title = watch('title=""');
   const name = watch('name=""');
@@ -121,7 +123,9 @@ export default function NewStaff({ data }) {
           label="Staff Status"
           name="isActive"
           trueTitle="Active"
-          falseTitle="Draft"/> 
+          falseTitle="Draft"
+          register={register}
+          /> 
                 
           
     </div>

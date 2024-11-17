@@ -7,16 +7,26 @@ import ToggleInput from "@/components/formInputs/ToggleInput"
 import FormHeader from "@/components/backoffice/FormHeader";
 import SubmitButton from "@/components/formInputs/SubmitButton";
 import { useForm } from "react-hook-form";
+import { generateIsoDate } from "@/lib/generateIsoDate";
+import { useRouter } from "next/navigation";
 
 export default function NewCoupon({ data }) {
   const [loading, setLoading] = useState(false);
   const [CouponCode, setCouponCode] = useState('');  // Set an empty string initially
-  const { register, reset, watch, handleSubmit, formState: { errors } } = useForm();
-  
+  const { register, reset, watch, handleSubmit, formState: { errors } } = useForm({defaultValues:{
+        isActive:true,},});
+//   const { register,watch } = useForm({defaultValues:{
+//     isActive:true,
+//   },
+// });
+  // const isActive = watch(`${name}`);
   // Watch form fields
   const title = watch('title=""');
   const ExpiryData = watch('ExpiryData=""');
-  
+  const isActive = watch("isActive");
+console.log(isActive);
+const router = useRouter;
+ 
   // onSubmit function
   async function onSubmit(formData) {
     setLoading(true);
@@ -32,11 +42,13 @@ export default function NewCoupon({ data }) {
     
     console.log("Generated Coupon Code:", couponCode);
     console.log("Form Data:", formData);
+    const isoFormattedDate =generateIsoDate(formData.ExpiryData)
+    formData.ExpiryData=isoFormattedDate
     
-    // Make API request to create the coupon
-    const endpoint = "api/coupon";
+    // Make API request to create the cou
+    const endpoint = "api/coupons";
     const resourceName = "Coupon";
-    makePostRequest(setLoading, endpoint, formData, resourceName, reset);
+    makePostRequest(setLoading, endpoint, formData, resourceName, reset, redirect);
   }
 
   return (
@@ -67,7 +79,8 @@ export default function NewCoupon({ data }) {
           label="Publish Your Coupons"
           name="isActive"
           trueTitle="Active"
-          falseTitle="Draft"/>
+          falseTitle="Draft"
+          register={register}/>
         </div>
         <SubmitButton
           isLoading={loading}

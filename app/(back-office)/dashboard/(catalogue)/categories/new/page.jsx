@@ -32,7 +32,10 @@ export default function NewCategory() {
     },
   ]
   const [loading, setLoading] = useState(false)
-  const { register, reset, handleSubmit, formState: { errors } } = useForm();
+  const {register,reset,watch,handleSubmit,formState:{errors}}=useForm({defaultValues:{
+    isActive:true,},});
+    const isActive = watch("isActive");
+console.log(isActive);
   async function onSubmit(data) {
     setLoading(true)
     const Endpoint = "api/categories"
@@ -96,7 +99,9 @@ export default function NewCategory() {
           label="Publish Your Category"
           name="isActive"
           trueTitle="Active"
-          falseTitle="Draft"/>
+          falseTitle="Draft"
+          register={register}
+          />
         </div>
         <SubmitButton
           isLoading={loading}

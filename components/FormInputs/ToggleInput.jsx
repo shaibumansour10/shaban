@@ -1,12 +1,8 @@
 import React from 'react'
 import { useForm } from "react-hook-form"
 
-export default function ToggleInput({label,name,trueTitle,falseTitle}) {
-  const { register,watch } = useForm({defaultValues:{
-    isActive:true,
-  },
-});
-  const isActive = watch(`${name}`);
+export default function ToggleInput({label,name,trueTitle,falseTitle,register,isActive}) {
+  
   return (
             <div className="flex sm:col-span-2">
               <div className="w-full">

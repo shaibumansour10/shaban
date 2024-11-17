@@ -12,7 +12,10 @@ import { useForm } from "react-hook-form"
 export default function NewBanner() {
   const [imageUrl,setImageUrl]=useState("")
   const [loading, setLoading]=useState(false)
-  const {register,reset,handleSubmit,formState:{errors}}=useForm();
+  const {register,reset,watch,handleSubmit,formState:{errors}}=useForm({defaultValues:{
+    isActive:true,},});
+    const isActive = watch("isActive");
+console.log(isActive);
    async function onSubmit(data) {
     setLoading(true)
     const endpoint="api/banners"
@@ -73,7 +76,8 @@ export default function NewBanner() {
           label="Publish Your Banner"
           name="isActive"
           trueTitle="Active"
-          falseTitle="Draft"/>
+          falseTitle="Draft"
+          register={register}/>
     </div>
     <SubmitButton
                 isLoading={loading}

@@ -12,7 +12,10 @@ import { useForm } from "react-hook-form"
 export default function NewMarkets() {
   const [logoUrl,setLogoUrl]=useState("")
   const [loading, setLoading]=useState(false)
-  const {register,reset,handleSubmit,formState:{errors}}=useForm();
+  const {register,reset,watch,handleSubmit,formState:{errors}}=useForm({defaultValues:{
+    isActive:true,},});
+    const isActive = watch("isActive");
+console.log(isActive);
    async function onSubmit(data) {
     setLoading(true)
     const endpoint="api/markets"
@@ -71,7 +74,9 @@ export default function NewMarkets() {
           label="Publish Your Market"
           name="isActive"
           trueTitle="Active"
-          falseTitle="Draft"/>
+          falseTitle="Draft"
+          register={register}
+          />
     </div>
     <SubmitButton
                 isLoading={loading}

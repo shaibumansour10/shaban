@@ -1,13 +1,21 @@
 import { NextResponse } from "next/server";
+import db from "../../../lib/db";
 
 export async function POST(request){
  try {
- const {title,
-    couponCode, 
-    ExpiryData}=await request.json();
- const newCoupons ={title,couponCode, ExpiryData}
- console.log(newCoupons)
- return NextResponse.json(newCoupons)
+    const { title, couponCode, ExpiryData } = await request.json();
+
+ 
+    const newCoupon = await db.Coupon.create({
+      data: {
+        title,
+        couponCode,
+        ExpiryData, // Pass the Date object
+      },
+    });
+    
+ console.log(newCoupon)
+ return NextResponse.json(newCoupon)
  }  catch (error) {
 console.log(error)
 return NextResponse.json({
