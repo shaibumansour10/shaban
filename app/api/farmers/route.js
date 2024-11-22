@@ -9,19 +9,23 @@ export async function POST(request){
     contantPerson,
     contantPersonPhone,
     notes,
+    isActive,
     farmerUniqueCode,
+    profileImageUrl,
     terms}=await request.json();
- const newFarmer ={name,
+ const newFarmerProfile ={name,
     phone,
     email,
     physicalAddress,
     contantPerson,
     contantPersonPhone,
     notes,
+    isActive,
     farmerUniqueCode,
+    profileImageUrl,
     terms}
- console.log(newFarmer)
- return NextResponse.json(newFarmer)
+ console.log(newFarmerProfile)
+ return NextResponse.json(newFarmeProfile)
  }  catch (error) {
 console.log(error)
 return NextResponse.json({

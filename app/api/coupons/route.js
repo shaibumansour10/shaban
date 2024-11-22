@@ -3,7 +3,7 @@ import db from "../../../lib/db";
 
 export async function POST(request){
  try {
-    const { title, couponCode, ExpiryData } = await request.json();
+    const { title, couponCode, ExpiryData,isActive } = await request.json();
 
  
     const newCoupon = await db.Coupon.create({
@@ -11,6 +11,7 @@ export async function POST(request){
         title,
         couponCode,
         ExpiryData, // Pass the Date object
+        isActive
       },
     });
     

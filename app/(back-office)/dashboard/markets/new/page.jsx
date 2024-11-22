@@ -4,6 +4,7 @@ import {makePostRequest} from "@/lib/apiRequest"
 import TextAreaInput from "@/components/formInputs/TextAreaInput"
 import SubmitButton from "@/components/formInputs/SubmitButton"
 import TextInput from "@/components/formInputs/TextInput"
+import SelectInput from "@/components/formInputs/SelectInput"
 import ToggleInput from "@/components/formInputs/ToggleInput"
 import React ,{useState} from 'react'
 import FormHeader from "@/components/backoffice/FormHeader"
@@ -11,6 +12,16 @@ import ImageInput from "@/components/formInputs/ImageInput"
 import { useForm } from "react-hook-form"
 export default function NewMarkets() {
   const [logoUrl,setLogoUrl]=useState("")
+  const categories=[
+    {
+      id:1,
+      title:"Category 1"
+    },
+    {
+      id:2,
+      title:"Category 2"
+    },
+  ]
   const [loading, setLoading]=useState(false)
   const {register,reset,watch,handleSubmit,formState:{errors}}=useForm({defaultValues:{
     isActive:true,},});
@@ -56,7 +67,16 @@ console.log(isActive);
          name="title"
          register={register}
          errors={errors}
+         className='w-full'
          />
+         <SelectInput label="Select Categories"
+            name="categoryId"
+            multiple="true"
+            register={register}
+            errors={errors}
+            className="w-full"
+            option={categories}
+            />
     <TextAreaInput label="Market Description"
          name="description"
          register={register}

@@ -26,23 +26,145 @@ model Banner {
   updatedAt DateTime @updatedAt
 }
 
+model Category {
+  id          String      @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  slug        String      @unique
+  imageUrl    String?
+  isActive    Boolean
+  description String?
+  products    Product[]
+  communities Community[]
+
+  marketIds String[] @db.ObjectId
+  markets   Market[] @relation("CategoryMarkets", fields: [marketIds], references: [id])
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+model Market {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  slug        String  @unique
+  isActive    Boolean
+  logoUrl     String?
+  description String?
+
+  categoryIds String[]   @db.ObjectId
+  categories  Category[] @relation("CategoryMarkets", fields: [categoryIds], references: [id])
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+model Product {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  slug         String   @unique
+  imageUrl     String?
+  isActive     Boolean
+  description  String?
+  sku          String?
+  barcode      String?
+  productPrice Float
+  salePrice    Float
+  tags         String[]
+
+  category   Category  @relation(fields: [categoryId], references: [id])
+  categoryId String    @db.ObjectId
+  user       User      @relation(fields: [userId], references: [id])
+  userId     String    @db.ObjectId
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime? @updatedAt
+}
+
+model Community {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  isActive    Boolean
+  slug        String   @unique
+  title       String
+  description String?
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  String   @db.ObjectId
+
+  content   String
+  imageUrl  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+enum UserRole {
+  USER
+  ADMIN
+  FARMER
+  MODERATOR
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+
+  products Product[]
+
+  role UserRole @default(USER)
+
+  farmerProfile   FarmerProfile?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime?      @updatedAt
+  farmerProfileId String         @db.ObjectId
+}
+
+model FarmerProfile {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  slug               String  @unique
+  name               String
+  phone              String
+  email              String
+  physicalAddress    String?
+  contactPerson      String?
+  contactPersonPhone String?
+  profileImageUrl    String?
+  isActive           Boolean
+  notes              String?
+  terms              String?
+  farmerUniqueCode   String
+
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+// USER=>ADIMIN, FARMER, CUSTOMER,AGENT
+
 // model Category {
 //   id          String    @id @default(auto()) @map("_id") @db.ObjectId
 //   title       String
-//   imageUrl    String?
 //   slug        String    @unique
-//   description String?
+//   imageUrl    String?
 //   isActive    Boolean
+//   description String?
 //   products    Product[]
-//   marketIds   String[]  @db.objectId
-//   markets     Market[]  @relation(fields: [marketIds], references: [id])
-//   createdAt   DateTime  @default(now())
-//   updatedAt   DateTime  @updatedAt
+
+//   marketIds String[] @db.objectId
+//   markets   Market[] @relation(fields: [marketIds], references: [ids])
+
+//   createdAt DateTime  @default(now())
+//   updatedAt DateTime? @updatedAt
 // }
 
 // model Market {
-//   id   String @id @default(auto()) @map("_id") @db.ObjectId
-//   name String @unique
+//   id          String  @id @default(auto()) @map("_id") @db.ObjectId
+//   title       String
+//   slug        String  @unique
+//   isActive    Boolean
+//   logoUrl     String?
+//   description String?
 
 //   categoryIds String[]   @db.ObjectId
 //   categories  Category[] @relation(fields: [categoryIds], references: [id])
@@ -51,9 +173,10 @@ model Banner {
 // }
 
 // model Product {
-//   id         String     @id @default(auto()) @map("_id") @db.ObjectId
-//   title      String     @unique
-//   categories Category[] @relation(fields: [categoryId], references: [id])
-//   createdAt  DateTime   @default(now())
-//   updatedAt  DateTime?  @updatedAt
+//   id         String    @id @default(auto()) @map("_id") @db.ObjectId
+//   title      String    @unique
+//   category   Category  @relation(fields: [categoryId], references: [id])
+//   categoryId String    @db.ObjectId
+//   createdAt  DateTime  @default(now())
+//   updatedAt  DateTime? @updatedAt
 // }

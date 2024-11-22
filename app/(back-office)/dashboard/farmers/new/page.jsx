@@ -1,8 +1,9 @@
 "use client";
 import { generateUserCode } from "@/lib/generateUserCode";
 import { makePostRequest } from "@/lib/apiRequest";
+import ToggleInput from "@/components/formInputs/ToggleInput";
 import TextInput from "@/components/formInputs/TextInput";
-import ToggleInput from "@/components/formInputs/ToggleInput"
+import ImageInput from "@/components/formInputs/ImageInput";
 import TextAreaInput from "@/components/formInputs/TextAreaInput";
 import React, { useState } from 'react';
 import FormHeader from "@/components/backoffice/FormHeader";
@@ -11,8 +12,12 @@ import { useForm } from "react-hook-form";
 
 export default function NewFarmer({ data }) {
   const [loading, setLoading] = useState(false);
+  const [imageUrl,setImageUrl]=useState("")
   const [FarmerUniquewCode, setFarmerUniqueCode] = useState('');  // Set an empty string initially
-  const { register, reset, watch, handleSubmit, formState: { errors } } = useForm();
+  const {register,reset,watch,handleSubmit,formState:{errors}}=useForm({defaultValues:{
+    isActive:true,},});
+    const isActive = watch("isActive");
+console.log(isActive);
   
   // Watch form fields
 //   const title = watch('title=""');
@@ -33,6 +38,7 @@ export default function NewFarmer({ data }) {
     
     console.log("Generated Farmer Code:", farmerUniqueCode);
     console.log("Form Data:", data);
+    data.imageUrl=imageUrl;
     
     // Make API request to create the Farmer
     const endpoint = "api/farmers";
@@ -97,7 +103,7 @@ export default function NewFarmer({ data }) {
             name="terms"
             register={register}
             errors={errors}
-           
+            isRequired={false}
           />
           <TextAreaInput
             label="Notes"
@@ -106,8 +112,15 @@ export default function NewFarmer({ data }) {
             errors={errors}
             isRequired={false}
           />
+          <ImageInput
+                    imageUrl={imageUrl}
+                    setImageUrl={setImageUrl}
+                    endpoint="farmerProfileUploader"
+                    label="FarmerProfile"
+                />
           
           <ToggleInput 
+          register={register}
           label="Publish Your Farmer"
           name="isActive"
           trueTitle="Active"

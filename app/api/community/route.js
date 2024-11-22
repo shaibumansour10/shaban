@@ -2,16 +2,18 @@ import { NextResponse } from "next/server";
 
 export async function POST(request){
  try {
- const {categoriesIds,
+ const {categoryId,
     content,
     description,
+    isActive,
     imageUrl,
     slug,
     title}=await request.json();
- const newCommunity ={categoriesIds,
+ const newCommunity ={categoryId,
     content,
     description,
     imageUrl,
+    isActive,
     slug,
     title
     }

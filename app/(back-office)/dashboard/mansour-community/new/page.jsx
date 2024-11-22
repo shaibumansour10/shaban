@@ -87,7 +87,7 @@ console.log(isActive);
             errors={errors}
             className="w-full" />
           <SelectInput label="Select Categories"
-            name="categoriesIds"
+            name="categoryId"
             register={register}
             errors={errors}
             className="w-full"

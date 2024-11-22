@@ -3,9 +3,9 @@ import { NextResponse } from "next/server";
 export async function POST(request){
  try {
  const {title,slug
-    ,logoUrl,description}=await request.json();
+    ,logoUrl,description,isActive}=await request.json();
  const newMarket ={title,slug
-    ,logoUrl,description}
+    ,logoUrl,description,isActive}
  console.log(newMarket)
  return NextResponse.json(newMarket)
  }  catch (error) {
