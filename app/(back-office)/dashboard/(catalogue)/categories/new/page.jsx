@@ -13,24 +13,7 @@ import { useForm } from "react-hook-form"
 import { title } from "process"
 export default function NewCategory() {
   const [imageUrl, setImageUrl] = useState("")
-  const markets = [
-    {
-      id: 1,
-      title: "sproutes  Market"
-    },
-    {
-      id: 2,
-      title: "buggati  Market"
-    },
-    {
-      id: 3,
-      title: "Massidz Market"
-    },
-    {
-      id: 4,
-      title: "toyota Market"
-    },
-  ]
+  // const markets = []
   const [loading, setLoading] = useState(false)
   const {register,reset,watch,handleSubmit,formState:{errors}}=useForm({defaultValues:{
     isActive:true,},});
@@ -74,15 +57,16 @@ console.log(isActive);
             name="title"
             register={register}
             errors={errors}
-            className="w-full" />
-          <SelectInput label="Select Markets"
+            // className="w-full" 
+            />
+          {/* <SelectInput label="Select Markets"
             name="marketIds"
             multiple="true"
             register={register}
             errors={errors}
             className="w-full"
             option={markets}
-            />
+            /> */}
           <TextAreaInput label="Category description"
             name="description"
             register={register}

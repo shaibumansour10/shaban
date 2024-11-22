@@ -8,7 +8,8 @@ import FormHeader from "@/components/backoffice/FormHeader";
 import SubmitButton from "@/components/formInputs/SubmitButton";
 import { useForm } from "react-hook-form";
 import { generateIsoDate } from "@/lib/generateIsoDate";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
+import { PrismaClient } from '@prisma/client';
 
 export default function NewCoupon({ data }) {
   const [loading, setLoading] = useState(false);
@@ -26,6 +27,9 @@ export default function NewCoupon({ data }) {
   const isActive = watch("isActive");
 console.log(isActive);
 const router = useRouter;
+function redirect(){
+  router.push("/dashboard/coupons")
+}
  
   // onSubmit function
   async function onSubmit(formData) {

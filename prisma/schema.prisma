@@ -15,3 +15,45 @@ model Coupon {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
+
+model Banner {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  imageUrl  String
+  link      String
+  isActive  Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// model Category {
+//   id          String    @id @default(auto()) @map("_id") @db.ObjectId
+//   title       String
+//   imageUrl    String?
+//   slug        String    @unique
+//   description String?
+//   isActive    Boolean
+//   products    Product[]
+//   marketIds   String[]  @db.objectId
+//   markets     Market[]  @relation(fields: [marketIds], references: [id])
+//   createdAt   DateTime  @default(now())
+//   updatedAt   DateTime  @updatedAt
+// }
+
+// model Market {
+//   id   String @id @default(auto()) @map("_id") @db.ObjectId
+//   name String @unique
+
+//   categoryIds String[]   @db.ObjectId
+//   categories  Category[] @relation(fields: [categoryIds], references: [id])
+//   createdAt   DateTime   @default(now())
+//   updatedAt   DateTime?  @updatedAt
+// }
+
+// model Product {
+//   id         String     @id @default(auto()) @map("_id") @db.ObjectId
+//   title      String     @unique
+//   categories Category[] @relation(fields: [categoryId], references: [id])
+//   createdAt  DateTime   @default(now())
+//   updatedAt  DateTime?  @updatedAt
+// }

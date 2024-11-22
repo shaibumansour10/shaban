@@ -1,6 +1,7 @@
 "use client"
 import {generateSlug} from "@/lib/generateSlug"
 import {makePostRequest} from "@/lib/apiRequest"
+import { useRouter } from "next/router"
 import TextAreaInput from "@/components/formInputs/TextAreaInput"
 import SubmitButton from "@/components/formInputs/SubmitButton"
 import TextInput from "@/components/formInputs/TextInput"
@@ -16,6 +17,10 @@ export default function NewBanner() {
     isActive:true,},});
     const isActive = watch("isActive");
 console.log(isActive);
+const router = useRouter;
+function redirect(){
+  router.push("/dashboard/banneris")
+}
    async function onSubmit(data) {
     setLoading(true)
     const endpoint="api/banners"
@@ -30,6 +35,7 @@ console.log(isActive);
             slag=>auto
             link
             image
+            isActive
             
             */}
       console.log(data);
@@ -38,7 +44,7 @@ console.log(isActive);
         endpoint,
         data,
       resourceName,
-        reset
+        reset,'/dashboard/banners'
         )
         setImageUrl("")
     
