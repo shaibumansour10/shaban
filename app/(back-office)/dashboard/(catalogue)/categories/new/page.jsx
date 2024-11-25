@@ -11,6 +11,7 @@ import FormHeader from "@/components/backoffice/FormHeader"
 import ImageInput from "@/components/formInputs/ImageInput"
 import { useForm } from "react-hook-form"
 import { title } from "process"
+import{ useRouter} from "next/navigation"
 export default function NewCategory() {
   const [imageUrl, setImageUrl] = useState("")
   // const markets = []
@@ -19,6 +20,10 @@ export default function NewCategory() {
     isActive:true,},});
     const isActive = watch("isActive");
 console.log(isActive);
+const router =useRouter();
+function redirect(){
+  router.push("/dashboard/categories")
+}
   async function onSubmit(data) {
     setLoading(true)
     const Endpoint = "api/categories"
@@ -40,7 +45,8 @@ console.log(isActive);
       Endpoint,
       data,
       resourceName,
-      reset
+      reset,
+      redirect
     )
 
   }

@@ -1,3 +1,4 @@
+import { PrismaClient } from '@prisma/client';
 import db from "@/lib/db"
 import { NextResponse } from "next/server";
 
@@ -8,6 +9,7 @@ export async function POST(request){
     data:{
         title,imageUrl,link,isActive  
     }
+    
  })
  console.log(newBanner)
  return NextResponse.json(newBanner)
@@ -18,3 +20,20 @@ return NextResponse.json({
 },{status:500})
  } 
 }
+
+
+export async function GET(request){
+    try{
+    const banners = await db.banner.findMany({
+        orderBy:{
+            createdAt:"desc"
+        },
+    },);
+    return NextResponse.json(banners)
+    } catch (error) {
+  console.log(error)
+  return NextResponse.json({
+      message:"failed to fetch banners",error
+  },{status:500})
+    }
+  }
