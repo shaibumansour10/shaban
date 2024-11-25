@@ -17,7 +17,7 @@ export default function RegisterForm() {
         formState:{errors},
      } =useForm();
      const[loading, setLoading]=useState(false);
-     const[emailErr,setEmailerr]=useState("");
+     const[emailErr,setEmailErr]=useState("");
      async function onSubmit(data) {
       try {
         console.log(data);
@@ -30,19 +30,21 @@ export default function RegisterForm() {
             },
             body:JSON.stringify(data),
         });
-
+        const responseData = await response.json();
         if (response.ok){
+      
+          console.log(responseData)
             setLoading(false);
             toast.success("User Created Successfully");
             reset();
-            router.push("/login");
+            // router.push("/login");
         } else{
             setLoading(false);
             if(response.status==409) {
-                setEmailerr("User with this Email already exists");
+                setEmailErr("User with this Email already exists");
                 toast.error("User with this Email already exists");
-            } else{
-                console.error("server Error:", responseData.massege);
+            } else {
+                console.error("server Error:", responseData.error);
                 toast.error("oops Something went wrong");
             }
         }
@@ -78,6 +80,7 @@ export default function RegisterForm() {
  errors={errors}
   className="sm:col-span-2 mb-3"
  />
+ {emailErr && <small className="text-red-600 -mt-2 mb-2"> {emailErr} </small>}
  <TextInput
  label="Your password"
  name="password"

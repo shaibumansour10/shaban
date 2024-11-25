@@ -2,14 +2,14 @@ import db from "@/lib/db"
 import { NextRequest, NextResponse } from "next/server"
 import bcrypt from "bcrypt"
 
-export default async function POST(request){
+export  async function POST(request){
     try {
      const {name,email,password}=await request.json()
     //  check if the user is already exists in db
     
     const existingUser =await db.user.findUnique({
         where:{
-            email
+            email,
         }
     })
     if(existingUser){
@@ -28,12 +28,34 @@ export default async function POST(request){
         }
     });
     console.log(newUser)
-    return NextResponse.json(newUser);
+    return NextResponse.json({
+        data:newUser,
+        message: "user Created Successfully"
+    },
+{status:201});
     } catch (error) {
      console.log(error)
      return NextRequest.json({
-        maseega:"failed to register user",
-        error
-     },{status:500})   
+        error,
+        message:"Server Error:Something went wrong",
+     },
+     {status:500}); 
     }
 }
+
+
+export async function GET(request){
+    try{
+    const users = await db.user.findMany({
+      orderBy:{
+          createdAt:"desc"
+      },
+  },);
+    return NextResponse.json(users)
+    } catch (error) {
+  console.log(error)
+  return NextResponse.json({
+      message:"failed to fetch users",error
+  },{status:500})
+    }
+  }
