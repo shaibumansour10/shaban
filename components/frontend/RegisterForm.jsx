@@ -8,7 +8,7 @@ import React,{useState}from 'react'
 import { useForm } from "react-hook-form"
 import toast from "react-hot-toast"
 
-export default function RegisterForm() {
+export default function RegisterForm({role}) {
     const router = useRouter();
      const{
         register,
@@ -64,6 +64,15 @@ export default function RegisterForm() {
         className="">
   {/* <div className="relative z-0 w-full mb-5 group"> */}
   
+ <TextInput
+ label=""
+ name="role"
+ type="hidden"
+ register={register}
+ defaultValue={role}
+ errors={errors}
+ className="sm:col-span-2 mb-3"
+ />
  <TextInput
  label="Your name"
  name="name"

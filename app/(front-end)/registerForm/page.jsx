@@ -19,7 +19,7 @@ export default function page() {
             </a>
         </div>
         {/* <GlobalPage/> */}
-     <RegisterForm/>
+     <RegisterForm role="USER" />
     </div>
     </section>
     </div>
