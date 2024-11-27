@@ -10,6 +10,7 @@ import SelectInput from "@/components/formInputs/SelectInput"
 import React, { useState } from 'react'
 import FormHeader from "@/components/backoffice/FormHeader"
 import ImageInput from "@/components/formInputs/ImageInput"
+import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { title } from "process"
 import { Plus, X } from "lucide-react"
@@ -62,6 +63,10 @@ export default function NewProduct() {
     const isActive = watch("isActive");
 console.log(isActive);
   
+const router =useRouter();
+function redirect(){
+  router.push("/dashboard/products")
+}
   async function onSubmit(data) {
     setLoading(true)
     const Endpoint = "api/products"
@@ -92,7 +97,8 @@ console.log(isActive);
       Endpoint,
       data,
       resourceName,
-      reset
+      reset,
+      redirect
     )
 
   }

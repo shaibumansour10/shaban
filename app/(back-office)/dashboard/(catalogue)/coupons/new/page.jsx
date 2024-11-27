@@ -8,7 +8,7 @@ import FormHeader from "@/components/backoffice/FormHeader";
 import SubmitButton from "@/components/formInputs/SubmitButton";
 import { useForm } from "react-hook-form";
 import { generateIsoDate } from "@/lib/generateIsoDate";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"
 import { PrismaClient } from '@prisma/client';
 
 export default function NewCoupon({ data }) {

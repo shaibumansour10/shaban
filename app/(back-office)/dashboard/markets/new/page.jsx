@@ -6,6 +6,7 @@ import SubmitButton from "@/components/formInputs/SubmitButton"
 import TextInput from "@/components/formInputs/TextInput"
 import SelectInput from "@/components/formInputs/SelectInput"
 import ToggleInput from "@/components/formInputs/ToggleInput"
+import { useRouter } from "next/navigation"
 import React ,{useState} from 'react'
 import FormHeader from "@/components/backoffice/FormHeader"
 import ImageInput from "@/components/formInputs/ImageInput"
@@ -27,6 +28,10 @@ export default function NewMarkets() {
     isActive:true,},});
     const isActive = watch("isActive");
 console.log(isActive);
+const router=useRouter();
+function redirect(){
+  router.push("/dashboard/markets")
+}
    async function onSubmit(data) {
     setLoading(true)
     const endpoint="api/markets"
@@ -49,7 +54,8 @@ console.log(isActive);
         endpoint,
         data,
       resourceName,
-        reset
+        reset,
+        redirect
         )
         setLogoUrl("")
     

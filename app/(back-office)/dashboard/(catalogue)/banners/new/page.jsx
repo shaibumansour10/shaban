@@ -44,6 +44,7 @@ function redirect(){
         endpoint,
         data,
       resourceName,
+      redirect,
         reset,'/dashboard/banners'
         )
         setImageUrl("")

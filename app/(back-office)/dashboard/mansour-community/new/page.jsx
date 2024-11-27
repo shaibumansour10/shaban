@@ -8,6 +8,7 @@ import ToggleInput from "@/components/formInputs/ToggleInput"
 import SelectInput from "@/components/formInputs/SelectInput"
 import React, { useState } from 'react'
 import FormHeader from "@/components/backoffice/FormHeader"
+import { useRouter } from "next/navigation"
 
 import ImageInput from "@/components/formInputs/ImageInput"
 import QuillEditor from "@/components/formInputs/QuillEditor"
@@ -38,6 +39,10 @@ export default function NewCommunty() {
     isActive:true,},});
     const isActive = watch("isActive");
 console.log(isActive);
+const router=useRouter();
+function redirect(){
+  router.push("/dashboard/communities")
+}
   //Quill Editor
   const [content, setContent]=useState('');
   async function onSubmit(data) {
@@ -68,7 +73,8 @@ console.log(isActive);
       Endpoint,
       data,
       resourceName,
-      reset
+      reset,
+      redirect
     )
 
   }

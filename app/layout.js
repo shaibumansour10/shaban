@@ -15,7 +15,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={inter.className}>
-        <Providers>
+        <Providers
+        attribute="className"
+        defaultTheme="system"
+        enableSystem={true}
+        disableTransitionOnChange
+        >
         {children}
         </Providers>
         </body>

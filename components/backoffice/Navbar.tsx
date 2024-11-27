@@ -13,7 +13,7 @@ import {
 import React from 'react'
 import Link from "next/link";
 
-export default function Navbar({ setShowSidebar, showSidebar }) {
+export default function Navbar({setShowSidebar,showSidebar}) {
     return (
         <div className={showSidebar ? 'flex items-center  justify-between bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 h-20 px-8 py-8  fixed top-0 w-full  z-50 ' :
             'flex items-center  justify-between bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 h-20 px-8 py-8  fixed top-0 w-full  z-50 sm:pr-[20rem]'

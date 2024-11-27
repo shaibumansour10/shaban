@@ -7,6 +7,7 @@ import ToggleInput from "@/components/formInputs/ToggleInput"
 import TextAreaInput from "@/components/formInputs/TextAreaInput";
 import React, { useState } from 'react';
 import FormHeader from "@/components/backoffice/FormHeader";
+import { useRouter } from "next/navigation"
 import SubmitButton from "@/components/formInputs/SubmitButton";
 import { useForm } from "react-hook-form";
 
@@ -18,6 +19,10 @@ export default function NewStaff({ data }) {
      isActive:true,},});
      const isActive = watch("isActive");
  console.log(isActive);
+ const router =useRouter();
+ function redirect(){
+     router.push("/dashboard/staff")
+ }
   // Watch form fields
 //   const title = watch('title=""');
   const name = watch('name=""');
@@ -41,7 +46,7 @@ export default function NewStaff({ data }) {
     // Make API request to create the Staff
     const endpoint = "api/staffs";
     const resourceName = "Staff";
-    makePostRequest(setLoading, endpoint, data, resourceName, reset);
+    makePostRequest(setLoading, endpoint, data, resourceName, reset,redirect);
   }
 
   return (
