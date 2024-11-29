@@ -1,194 +1,64 @@
-"use client"
-import { generateSlug } from "@/lib/generateSlug"
-import { makePostRequest } from "@/lib/apiRequest"
-import TextAreaInput from "@/components/formInputs/TextAreaInput"
-import SubmitButton from "@/components/formInputs/SubmitButton"
-import ArrayIterms from "@/components/formInputs/ArrayIterms"
-import ToggleInput from "@/components/formInputs/ToggleInput"
-import TextInput from "@/components/formInputs/TextInput"
-import SelectInput from "@/components/formInputs/SelectInput"
-import React, { useState } from 'react'
-import FormHeader from "@/components/backoffice/FormHeader"
-import ImageInput from "@/components/formInputs/ImageInput"
-import { useRouter } from "next/navigation"
-import { useForm } from "react-hook-form"
-import { title } from "process"
-import { Plus, X } from "lucide-react"
+import { getData } from "@/lib/getData";
+import NewProductForm from "@/components/backoffice/NewProductForm";
+import React from "react";
 
-export default function NewProduct() {
- 
-  const [imageUrl, setImageUrl] = useState("")
-  const categories = [
-    {
-      id: 1,
-      title: "Category 1"
-    },
-    {
-      id: 2,
-      title: "Category 2"
-    },
-    {
-      id: 3,
-      title: "Category 3"
-    },
-    {
-      id: 4,
-      title: "Category 4"
-    },
-  ];
-  const farmers = [
-    {
-      id: 1,
-      title: "Farmer 1"
-    },
-    {
-      id: 2,
-      title: "Farmer 2"
-    },
-    {
-      id: 3,
-      title: "Farmer 3"
-    },
-    {
-      id: 4,
-      title: "Farmer 4"
-    },
-  ];
-  const [tags, setTags]=useState(["tag1","tag2"]);
- 
-  // TAGS END
-  const [loading, setLoading] = useState(false)
-  const {register,reset,watch,handleSubmit,formState:{errors}}=useForm({defaultValues:{
-    isActive:true,},});
-    const isActive = watch("isActive");
-console.log(isActive);
-  
-const router =useRouter();
-function redirect(){
-  router.push("/dashboard/products")
-}
-  async function onSubmit(data) {
-    setLoading(true)
-    const Endpoint = "api/products"
-    const resourceName = "Products"
-    const slug = generateSlug(data.title)
-    data.slug = slug
-    data.tags=tags
-    data.imageUrl = imageUrl
-    {/*
-            id =>auto
-            title
-            slag=>auto
-            description
-            image/images[]
-            SKU
-            barcode
-            productprice
-            salePrice
-            category
-            farmer
-            tags[]
-            productQuantity
-            
-            */}
-    console.log(data);
-    makePostRequest(
-      setLoading,
-      Endpoint,
-      data,
-      resourceName,
-      reset,
-      redirect
-    )
+export default async function NewProduct() {
+  try {
+    // Fetch categories and users (farmers)
+    const categoriesData = await getData("categories");
+    const usersData = await getData("users");
 
+    // Check if categoriesData is an array, otherwise default to empty array
+    const categories = Array.isArray(categoriesData)
+      ? categoriesData.map((category) => ({
+          id: category.id,
+          title: category.title,
+        }))
+      : [];
+
+    // Ensure usersData is an array, then filter for farmers
+    const farmersData = Array.isArray(usersData)
+      ? usersData.filter((user) => user.role === "FARMER")
+      : [];
+    
+    // Map the farmers to a desired structure
+    const farmers = farmersData.map((farmer) => ({
+      id: farmer.id,
+      title: farmer.name,
+    }));
+
+    // Render the form with the categories and farmers data
+    return <NewProductForm categories={categories} farmers={farmers} />;
+  } catch (error) {
+    // Log the error and show a fallback UI (e.g., a loading message or error)
+    console.error("Error fetching data:", error);
+    return <div>Error loading data, please try again later.</div>;
   }
-  return (
-    <div>
-      <FormHeader title="New Product" />
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-4xl p-4 bg-white border
-    border-gray-200 rounded-lg shadow sm:p-6 md:p-8
-    dark:bg-gray-800 dark:border-gray-700 mx-auto my-3 mt-6">
-        <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-          <TextInput label="Product Title"
-            name="title"
-            register={register}
-            errors={errors}
-          />
-          <TextInput label="Product SKU"
-            name="sku"
-            register={register}
-            errors={errors}
-            className="w-full" />
-          <TextInput label="Product BarCode"
-            name="barcode"
-            register={register}
-            errors={errors}
-            className="w-full" />
-          <TextInput label="Product Price"
-            name="productprice"
-            type="number"
-            register={register}
-            errors={errors}
-            className="w-full" />
-          <TextInput label="Product Sales Price(Discounted)"
-            name="salesprice"
-            type="number"
-            register={register}
-            errors={errors}
-            className="w-full" />
-          <SelectInput label="Select Category"
-            name="catogeryId"
-            register={register}
-            errors={errors}
-            className="w-full"
-            option={categories}
-            />
-          <SelectInput label="Select Farmer"
-            name="farmerId"
-            register={register}
-            errors={errors}
-            className="w-full"
-            option={farmers}
-            />
-            <ImageInput
-            imageUrl={imageUrl}
-            setImageUrl={setImageUrl}
-            endpoint="ProductImageUploader"
-            label="Product Image"
-          />
-          
-          <ArrayIterms setItems={setTags} itemTitle="Add Tag" items={tags}/> 
-          <TextAreaInput label="Product description"
-            name="description"
-            register={register}
-            errors={errors}
-          />
-          {/* Tags */}
-         
-          <ToggleInput 
-          label="Publish Your Product"
-          name="isActive"
-          trueTitle="Active"
-          falseTitle="Draft"
-          register={register}
-          />
-        </div>
-        <SubmitButton
-          isLoading={loading}
-          buttonTitle="Create Product"
-          loadingButtonTitle="Create Product please wait..."
-        />
-      </form>
-
-      {/*
-     -id
-     -title
-     -slug
-     -discription
-     -image
-     */}
-    </div>
-  )
 }
+
+// import {getData} from "@/lib/getData"
+// import NewProductForm from "@/components/backoffice/NewProductForm"
+// import React from 'react'
+
+// export default async function NewProduct() {
+//    // categories and farmer
+//    const categoriesData = await getData("categories")
+//    const usersData = await getData("users")
+//    const categories =categoriesData.map((category)=>{
+//     return{
+//       id:category.id,
+//       title:category.title,
+//     }
+//    })
+//    const farmersData =usersData.filter((user)=>user.role==="FARMER");
+//    const farmers =farmersData.map((farmer)=>{
+//     return{
+//       id:farmer.id,
+//       title:farmer.name,
+//     }
+//    })
+//   return (
+   
+//    <NewProductForm categories={categories} farmers={farmers}/>
+//   )
+// }

@@ -5,7 +5,7 @@ import {getData} from "@/lib/getData"
 import React from "react";
 
 export default async  function page({params:{id}}){
-    const user = await getData(`users/${id}`)
+    const user = await getData(`user/${id}`)
     console.log(id)
     console.log(user);
     return (

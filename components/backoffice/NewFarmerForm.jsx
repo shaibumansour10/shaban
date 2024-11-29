@@ -1,5 +1,6 @@
 "use client";
 import { generateUserCode } from "@/lib/generateUserCode";
+import { generateSlug } from "@/lib/generateSlug"
 import { makePostRequest } from "@/lib/apiRequest";
 import ToggleInput from "@/components/formInputs/ToggleInput";
 import TextInput from "@/components/formInputs/TextInput";
@@ -19,7 +20,7 @@ export default function NewFarmerForm({ user }) {
   const [farmerUniquewCode, setFarmerUniqueCode] = useState('');  // Set an empty string initially
   const {register,reset,watch,handleSubmit,formState:{errors}}=useForm({defaultValues:{
     isActive:true,
-  ...user,
+     ...user,
   },});
   const router = useRouter();
   function redirect(){
@@ -50,6 +51,8 @@ console.log(isActive);
     data.imageUrl=imageUrl;
     data.products=products;
     data.userId=user.id;
+    const slug = generateSlug(data.title)
+    data.slug = slug
     
     // Make API request to create the Farmer
     const endpoint = "api/farmers";

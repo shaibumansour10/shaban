@@ -60,17 +60,24 @@ model Market {
 }
 
 model Product {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  title        String
-  slug         String   @unique
-  imageUrl     String?
-  isActive     Boolean
-  description  String?
-  sku          String?
-  barcode      String?
-  productPrice Float
-  salePrice    Float
-  tags         String[]
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  title           String
+  slug            String   @unique
+  imageUrl        String?
+  isActive        Boolean
+  isWholesale     Boolean
+  description     String?
+  sku             String?
+  barcode         String?
+  productCode     String
+  unit            String
+  wholesaleQty    Int
+  oty             Int
+  productStock    Int
+  productPrice    Float
+  wholeSalesPrice Float
+  salePrice       Float
+  tags            String[]
 
   category   Category  @relation(fields: [categoryId], references: [id])
   categoryId String    @db.ObjectId
@@ -121,7 +128,7 @@ model User {
 model FarmerProfile {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  slug               String   @unique
+  // slug               String   @unique
   name               String
   phone              String
   email              String

@@ -21,7 +21,7 @@ export async function POST(request){
  const farmerData=await request.json();
  const newFarmerProfile = await db.farmerProfile.create({
    data:{
-      // slug               :farmerData.slug,
+    //  slug               :farmerData.slug,
       name               :farmerData.name,
       phone              :farmerData.phone,
       email            :farmerData.email,
@@ -47,4 +47,20 @@ return NextResponse.json({
     message:"failed to create Farmer",error
 },{status:500})
  } 
+}
+
+export async function GET(request){
+  try{
+  const profile = await db.farmerProfile.findMany({
+    orderBy:{
+        createdAt:"desc"
+    },
+},);
+  return NextResponse.json(profile)
+  } catch (error) {
+console.log(error)
+return NextResponse.json({
+    message:"failed to fetch profile",error
+},{status:500})
+  }
 }
