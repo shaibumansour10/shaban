@@ -2,29 +2,29 @@ import db from "@/lib/db"
 import { NextResponse } from "next/server";
 
 export async function POST(request){
- 
-//   const{  barcode,
-//     catogeryId,
-//     description,
-//     userId:farmerId,
-//     imageUrl,
-//     isActive,
-//     isWholesale,
-//     productCode,
-//     productprice,
-//     salesprice,
-//     sku,
-//     slug,
-//     tags,
-//     title,
-//     unit,
-//     wholeSalesPrice,
-//     wholesaleQty,
-//  productStock
-//  qty
-//     }=await request.json();
-try {
-const productData= await request.json;
+    try {
+  const {  barcode,
+    catogeryId,
+    description,
+    farmerId,
+    imageUrl,
+    isActive,
+    isWholesale,
+    productCode,
+    productprice,
+    salesprice,
+    sku,
+    slug,
+    tags,
+    title,
+    unit,
+    wholeSalesPrice,
+    wholesaleQty,
+     productStock,
+     qty
+    }=await request.json();
+
+
 const existingProduct=await db.product.findUnique({
     where:{
         slug,
@@ -57,7 +57,7 @@ const  newProduct=await db.product.create({
         wholeSalesPrice:parseFloat(wholeSalesPrice),
         wholesaleQty:parseInt(wholesaleQty),
      productStock:parseInt(wholesaleQty),
-     qt:parseInt(qty),
+     qty:parseInt(qty),
     },
 });
 //  const newProduct ={productData}

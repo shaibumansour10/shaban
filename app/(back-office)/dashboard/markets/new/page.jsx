@@ -1,123 +1,26 @@
-"use client"
-import {generateSlug} from "@/lib/generateSlug"
-import {makePostRequest} from "@/lib/apiRequest"
-import TextAreaInput from "@/components/formInputs/TextAreaInput"
-import SubmitButton from "@/components/formInputs/SubmitButton"
-import TextInput from "@/components/formInputs/TextInput"
-import SelectInput from "@/components/formInputs/SelectInput"
-import ToggleInput from "@/components/formInputs/ToggleInput"
-import { useRouter } from "next/navigation"
-import React ,{useState} from 'react'
-import FormHeader from "@/components/backoffice/FormHeader"
-import ImageInput from "@/components/formInputs/ImageInput"
-import { useForm } from "react-hook-form"
-export default function NewMarkets() {
-  const [logoUrl,setLogoUrl]=useState("")
-  const categories=[
-    {
-      id:1,
-      title:"Category 1"
-    },
-    {
-      id:2,
-      title:"Category 2"
-    },
-  ]
-  const [loading, setLoading]=useState(false)
-  const {register,reset,watch,handleSubmit,formState:{errors}}=useForm({defaultValues:{
-    isActive:true,},});
-    const isActive = watch("isActive");
-console.log(isActive);
-const router=useRouter();
-function redirect(){
-  router.push("/dashboard/markets")
-}
-   async function onSubmit(data) {
-    setLoading(true)
-    const endpoint="api/markets"
-    const resourceName="Market"
-    const slug =generateSlug(data.title)
-    data.slug=slug
+import { getData } from "@/lib/getData";
+import NewMarketForm from "@/components/backoffice/NewMarketForm";
+import React from 'react'
+
+export default async function NewMarkets() {
+  try {
+    // Fetch categories and users (farmers)
+    const categoriesData = await getData("categories");
+    
+
+    // Check if categoriesData is an array, otherwise default to empty array
+    const categories = Array.isArray(categoriesData)
+      ? categoriesData.map((category) => ({
+          id: category.id,
+          title: category.title,
+        }))
+      : [];
+    return <NewMarketForm categories={categories}/>;
+  } catch (error) {
+    // Log the error and show a fallback UI (e.g., a loading message or error)
+    console.error("Error fetching data:", error);
+    return <div>Error loading data, please try again later.</div>;
+  }
+     
  
-    data.logoUrl=logoUrl;
-    {/*
-            id =>auto
-            title
-            slag=>auto
-            link
-            image
-            
-            */}
-      console.log(data);
-      makePostRequest(
-        setLoading,
-        endpoint,
-        data,
-      resourceName,
-        reset,
-        redirect
-        )
-        setLogoUrl("")
-    
-}
-  return (
-    <div>
-    <FormHeader title="New Market"/>  
-    <form 
-    onSubmit={handleSubmit(onSubmit)}
-    className="w-full max-w-4xl p-4 bg-white border
-    border-gray-200 rounded-lg shadow sm:p-6 md:p-8
-    dark:bg-gray-800 dark:border-gray-700 mx-auto my-3 mt-6">
-      <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-    <TextInput label="Market Title"
-         name="title"
-         register={register}
-         errors={errors}
-         className='w-full'
-         />
-         <SelectInput label="Select Categories"
-            name="categoryId"
-            multiple="true"
-            register={register}
-            errors={errors}
-            className="w-full"
-            option={categories}
-            />
-    <TextAreaInput label="Market Description"
-         name="description"
-         register={register}
-         errors={errors}
-         />
-    
-                <ImageInput
-                    imageUrl={logoUrl}
-                    setImageUrl={setLogoUrl}
-                    endpoint="marketLogoUploader"
-                    label="Market Logo"
-                />
-                
-          <ToggleInput 
-          label="Publish Your Market"
-          name="isActive"
-          trueTitle="Active"
-          falseTitle="Draft"
-          register={register}
-          />
-    </div>
-    <SubmitButton
-                isLoading={loading}
-                buttonTitle="Create Market"
-                loadingButtonTitle="Create Market please wait..."
-            />
-    </form>
-    
-     {/*
-     -id
-     -title
-     -slug
-     -discription
-     -image
-     */}
-    </div>
-  )
-}
+  }

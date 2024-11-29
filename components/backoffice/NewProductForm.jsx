@@ -149,6 +149,7 @@ function redirect(){
           name="isWholesale"
           trueTitle="Supported"
           falseTitle="Not Supported"
+          isActive={isWholesale}
           register={register}
           />
         {
@@ -190,6 +191,7 @@ function redirect(){
           name="isActive"
           trueTitle="Active"
           falseTitle="Draft"
+          isActive={isActive}
           register={register}
           />
           
