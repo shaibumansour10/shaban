@@ -84,6 +84,7 @@ function redirect(){
           name="isActive"
           trueTitle="Active"
           falseTitle="Draft"
+          isActive={isActive}
           register={register}/>
     </div>
     <SubmitButton
