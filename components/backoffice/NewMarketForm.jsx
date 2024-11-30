@@ -47,7 +47,7 @@ function redirect(){
         reset,
         redirect
         )
-        setLogoUrl("");
+        setImageUrl("");
     
 }
   return (
