@@ -102,13 +102,13 @@ export default function Navbar({setShowSidebar,showSidebar}) {
                         <DropdownMenuLabel>My Account</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem>
-                            <button className='flex items-center space-x-2'>
+                            <button type="button" className='flex items-center space-x-2'>
                                 <LayoutDashboard className='mr-2 h-4 w-4' />
                                 <span>Dashboard</span>
                             </button>
                         </DropdownMenuItem>
                         <DropdownMenuItem>
-                            <button className='flex items-center space-x-2'>
+                            <button type="button" className='flex items-center space-x-2'>
                                 <Settings className='mr-2 h-4 w-4' />
                                 <span>Edit Profile</span>
                             </button>

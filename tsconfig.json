@@ -35,7 +35,7 @@
     "app/(back-office)/layout.js",
     "components/backoffice/sidebar.jsx",
     "app/layout.js"
-, "components/backoffice/Navbar.tsx", "lib/apiRequest.js", "components/frontend/Sparkles.jsx"  ],
+, "components/backoffice/Navbar.tsx", "lib/apiRequest.js", "components/frontend/Sparkles.jsx", ".next/types/app/(front-end)/page.jsx"  ],
   "exclude": [
     "node_modules"
   ]

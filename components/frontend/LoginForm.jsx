@@ -8,7 +8,7 @@ import React,{useState}from 'react'
 import { useForm } from "react-hook-form"
 import toast from "react-hot-toast"
 
-export default function RegisterForm({role=""}) {
+export default function LoginForm() {
     const router = useRouter();
      const{
         register,
@@ -62,30 +62,15 @@ export default function RegisterForm({role=""}) {
   return (
     <div className="w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl dark:bg-gray-800">
        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                    Sign Up to Mansour MarketPlace
+                    Login to Mansour MarketPlace
                 </h2>
        <form onSubmit={handleSubmit(onSubmit)}
        
         className="">
   {/* <div className="relative z-0 w-full mb-5 group"> */}
   
- <TextInput
- label=""
- name="role"
- type="hidden"
- register={register}
- defaultValue={role}
- errors={errors}
- className="sm:col-span-2 mb-3"
- />
- <TextInput
- label="Your name"
- name="name"
- type="text"
- register={register}
- errors={errors}
- className="sm:col-span-2 mb-3"
- />
+ 
+ 
  <TextInput
  label="Your email"
  name="email"
@@ -105,8 +90,8 @@ export default function RegisterForm({role=""}) {
  />
   <SubmitButton
   isLoading={loading}
-  buttonTitle="Sign Up"
-  loadingButtonTitle="Create a User please wait...."/>
+  buttonTitle="Login"
+  loadingButtonTitle="Login  please wait...."/>
       
   {/* <div className="flex items-center">
     <div className="w-full bg-slate-500 h-[1px]"> 
@@ -127,11 +112,11 @@ export default function RegisterForm({role=""}) {
 
 </div> */}
 <p className="text-sm font-light text-gray-500 dark:text-gray-400 py-4">
-Already have an account?{" "}
+Yet have an account?{" "}
 <Link
-href="/login"
+href="/registerForm"
 className="font-medium text-lime-600 hover:underline dark:text-lime-500">
-    Login
+    register
 </Link>
 </p>
 
