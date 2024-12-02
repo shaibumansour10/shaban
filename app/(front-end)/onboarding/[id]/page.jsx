@@ -8,8 +8,8 @@ export default async  function page({params:{id}}){
     const user = await getData(`user/${id}`)
     const FullName=user?.name
     function getLastName(FullName){
-    
-        const nameParts = FullName.trim( ).split(" ");
+         FullName= String(FullName).replace(/^\s+|\s+$/g,"");
+        const nameParts = FullName.split(" ");
         return nameParts[nameParts.length-1];
     }
     const lastName=getLastName(FullName)

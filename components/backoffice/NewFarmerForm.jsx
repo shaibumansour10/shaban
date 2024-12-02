@@ -156,6 +156,7 @@ console.log(isActive);
       label="Publish Your Supplier"
       name="isActive"
       trueTitle="Active"
+      isActive={isActive}
       falseTitle="Draft"/>
     </div>
     <SubmitButton
