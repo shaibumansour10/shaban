@@ -4,6 +4,7 @@ import ThemeSwitcherBtn from "@/components/ThemeSwitcherBtn"
 import logo from "../../public/logo.png";
 import Image from 'next/image'
 import SearchForm from "@/components/frontend/SearchForm"
+import HelpModal from "@/components/frontend/HelpModal"
 import { HelpCircle, User,ShoppingCart, CarFront } from 'lucide-react';
 export default function Navbar() {
   return (
@@ -22,10 +23,8 @@ export default function Navbar() {
   <User/>
   <span>Login</span>
   </Link>  
-<Link href="/login" className="flex items-center space-x-1 text-green-800 dark:text-green-600">
-  <HelpCircle/>
-  <span>Help</span>
-  </Link> 
+
+  <HelpModal/>
 <Link href="/cart" className="relative inline-flex iterms-center p-3 text-sm font-medium text-center text-green-600 bg-transparent rounded-lg">
   <ShoppingCart className="text-lime-700 dark:text-lime-500"/>
   <span className="sr-only">Cart</span>
