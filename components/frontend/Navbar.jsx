@@ -9,7 +9,7 @@ import { HelpCircle, User,ShoppingCart, CarFront } from 'lucide-react';
 export default function Navbar() {
   return (
     <div className=" bg-slate-200 dark:bg-slate-950 ">
-      <div className='flex items-center justify-between py-3  mx-auto '>
+      <div className='flex items-center justify-between py-3  mx-auto max-w-8xl'>
       <Link className="" href="/">
 <Image src={logo} alt="mansour" className="w-24"/>
 </Link>

@@ -6,7 +6,10 @@ export default function Layout({ children }) {
     <div>
       
         <Navbar/>
-      {children}
+        <div className=" mx-auto max-w-7xl py-6 px-4">
+        {children}
+        </div>
+     
     </div>
   )
 }

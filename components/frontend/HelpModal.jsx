@@ -5,10 +5,11 @@ import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
 import { HelpCircle,Headphones,Truck, CornerDownLeft} from 'lucide-react';
 export default function HelpModal() {
+
   const [openModal, setOpenModal] = useState(false);
 
   return (
-    <>
+    <div className=" mx-auto max-w-7xl">
       <Button onClick={() => setOpenModal(true)} className="flex items-center space-x-1 text-green-800 dark:text-green-600">
     <HelpCircle/>
   <span>Help</span>
@@ -34,17 +35,17 @@ export default function HelpModal() {
            <div className="flex items-center w-8 h-8 justify-center rounded-full">
           <CornerDownLeft className="w-4 h-4"/>
          </div>
-          <span>Help</span>
+          <span>Returns&Refund</span>
           </Link>
           <Link href="#" className="flex items-center space-x-1 text-green-800 dark:text-green-600">
           <div className="flex items-center w-8 h-8 justify-center rounded-full">
           <HelpCircle className="w-4 h-4"/>
          </div>
-          <span>Help</span>
+          <span>Payment</span>
           </Link>
         </div>
         </Modal.Body>
         </Modal>
-    </>
+    </div>
   );
 }
