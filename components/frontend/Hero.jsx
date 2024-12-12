@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from "next/link";
-// import HeroCarousel from "./HeroCarousel"
+import HeroCarousel from "./HeroCarousel"
 export default function Hero() {
   const categories=[
     {},{},{},
@@ -27,8 +27,8 @@ export default function Hero() {
     
        </div>
       </div>
-      <div className="w-2/3 bg-blue-700 rounded-md">
-     {/* <HeroCarousel/> */}
+      <div className="w-2/3 bg-blue-700 h-[300px] rounded-md">
+     <HeroCarousel/>
       </div>
     </div>
   )
