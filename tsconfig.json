@@ -25,7 +25,8 @@
       "@/*": [
         "./*"
       ]
-    }
+    },
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",
@@ -33,9 +34,13 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/(back-office)/layout.js",
-    "components/backoffice/sidebar.jsx",
-    "app/layout.js"
-, "components/backoffice/Navbar.tsx", "lib/apiRequest.js", "components/frontend/Sparkles.jsx", ".next/types/app/(front-end)/page.jsx"  ],
+    "components/backoffice/Sidebar.jsx",
+    "app/layout.js",
+    "components/backoffice/Navbar.tsx",
+    "lib/apiRequest.js",
+    "components/frontend/Sparkles.jsx",
+    ".next/types/app/(front-end)/page.jsx"
+  ],
   "exclude": [
     "node_modules"
   ]
