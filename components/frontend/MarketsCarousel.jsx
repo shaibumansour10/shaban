@@ -25,6 +25,9 @@ export default function MarketsCarousel() {
       slidesToSlide: 1 // optional, default to 1.
     }
   };
+  const slides=[
+    {},{},{},{},{},{},{},{},{},{}
+  ]
   return (
   
     <Carousel
@@ -43,33 +46,18 @@ export default function MarketsCarousel() {
     removeArrowOnDeviceType={["tablet", "mobile"]}
     // deviceType={}
     dotListClass="custom-dot-list-style"
-    itemClass="carousel-item-padding-40-px"
+    itemClass="px-2"
   >
-    <Link href="#" className='rounded-lg'>
-  <Image src="/markets/1.jpg" width={556} height={556} className='w-full'/>
-  <h2 className='flex items-center text-white dark:text-black bg-slate-600 dark:bg-slate-50'>mobile</h2>
+    {
+     slides.map((slide,i)=>{
+      return(
+        <Link key={i} href="#" alt="shaibu" className='rounded-lg mr-3 border bg-red-500'>
+  <Image src="/8.webp" width={556} height={556} className='w-full'/>
+  <h2 className='text-center text-white dark:text-black bg-slate-600 dark:bg-slate-50 rounded-md'>mobile</h2>
     </Link>
-    <Link href="#" className='rounded-lg'>
-  <Image src="/markets/2.jpg" width={556} height={556} className='w-full'/>
-  <h2 className='flex items-center text-white dark:text-black bg-slate-600 dark:bg-slate-50'>mobile</h2>
-    </Link>
-    <Link href="#" className='rounded-lg'>
-  <Image src="/markets/3.jpg" width={566} height={556} className='w-full'/>
-  <h2 className='flex items-center text-white dark:text-black bg-slate-600 dark:bg-slate-50'>mobile</h2>
-    </Link>
-    <Link href="#" className='rounded-lg'>
-  <Image src="/markets/4.gif" width={556} height={556} className='w-full'/>
-  <h2 className='flex text-white dark:text-black items-center bg-slate-600 dark:bg-slate-50'>mobile</h2>
-    </Link>
-    <Link href="#" className='rounded-lg'>
-  <Image src="/markets/5.jpg" width={556} height={556} className='w-full'/>
-  <h2 className='flex text-white dark:text-black items-center bg-slate-600 dark:bg-slate-50'>mobile</h2>
-    </Link>
-    <Link href="#" className='rounded-lg'>
-  <Image src="/love.webp" width={556} height={556} className='w-full'/>
-  <h2 className='flex items-center text-white dark:text-black bg-slate-600 dark:bg-slate-50'>mobile</h2>
-    </Link>
-    
+      )
+     })
+    }
   </Carousel>
   )
 }

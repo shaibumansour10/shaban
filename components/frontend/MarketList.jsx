@@ -5,7 +5,9 @@ export default function MarketList() {
     <div className='text-white py-16'>
       <h2>market list</h2>
      { /*Market Slider*/}
-     <MarketsCarousel/>
+   <div className="bg-slate-50 dark:bg-slate-950 rounded-lg p-4">
+   <MarketsCarousel/>
+   </div>
     </div>
   )
 }
