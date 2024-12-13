@@ -1,5 +1,4 @@
 import React from "react" 
-import Link from "next/link";
 // import GlobalPage from "@/components/frontend/GlobalPage"
 import Hero from "@/components/frontend/Hero"
 import MarketList from "@/components/frontend/MarketList"
