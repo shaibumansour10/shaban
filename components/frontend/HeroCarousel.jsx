@@ -1,30 +1,87 @@
+// "use client"
+// import Image from 'next/image';
+// import React from 'react';
+// import { Carousel } from 'nuka-carousel';
+// import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+// export default function HeroCarousel() {
+//   const config = {
+//     nextButtonText: <ChevronRight />,
+//     prevButtonText: <ChevronLeft />,
+//     pagingDotsClassName: "me-2 h-4 w-4",
+//   };
+
+//   return (
+//     <Carousel
+//       autoplay
+//       wrapAround
+//       defaultControlsConfig={config}
+//       className="rounded-md overflow-hidden"
+//     >
+//       {/* Responsive Images */}
+      
+//         <Image
+//           alt="mansour"
+//           src="/banners/1.jpg"
+//           fill
+//           className="object-cover w-full relative h-[50vw] sm:h-[384px]"
+//         />
+//         <Image
+//           alt="mansour"
+//           src="/banners/2.jpg"
+//           fill
+//           className="object-cover w-full relative h-[50vw] sm:h-[384px]"
+//         />
+    
+      
+//     </Carousel>
+//   );
+// }
+
 "use client"
 import Image from 'next/image';
 import React from 'react';
 import {Carousel} from 'nuka-carousel';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 
 export  default function HeroCarousel() {
   const  config = {
-    containerClassName: "border-4 border-red-500 rounded-full h-12 w-12 overflow-hidden",
-    nextButtonClassName: "string",
-    nextButtonStyle: "CSSProperties",
+    // containerClassName: "rounded-full h-12 w-12 overflow-hidden",
+    // nextButtonClassName: "string",
+    // nextButtonStyle: "CSSProperties",
     nextButtonText: <ChevronRight/>,
-    pagingDotsClassName: "me-2",
-    pagingDotsContainerClassName: "string",
-    pagingDotsStyle: "CSSProperties",
-    prevButtonClassName: "string",
-    prevButtonStyle: "CSSProperties",
+    pagingDotsClassName: "me-2 h-4 w-4",
+    // pagingDotsContainerClassName: "string",
+    // pagingDotsStyle: "CSSProperties",
+    // prevButtonClassName: "string",
+    // prevButtonStyle: "CSSProperties",
     prevButtonText:   <ChevronLeft/>,
    
 
   }
     return (
-      <Carousel autoplay defaultControlsConfig={config} className='rounded-md overflow-hidden'>
-        <img src='/banners/1.jpg' alt='mansour'/>
-        <img src='/banners/2.jpg' alt='mansour'/>
-        <img src='/banners/3.jpg' alt='mansour'/>
-        <img src='/banners/4.gif' alt='mansour'/>
+      <Carousel autoplay defaultControlsConfig={config} className='rounded-md overflow-hidden' 
+      wrapAround  >
+        <img alt="mansour" src='/banners/1.jpg'width={712} height={384} className='w-full'/>
+        <img alt="mansour" src='/banners/2.jpg'width={712} height={384} className='w-full'/>
+        <img alt="mansour" src='/banners/3.jpg' width={712} height={384} className='w-full'/>
+        <img alt="mansour" src='/banners/3.jpg' width={712} height={384} className='w-full'/>
+        <img alt="mansour" src='/banners/5.jpg' width={712} height={384} className='w-full'/>
+        <img alt="mansour" src='/banners/4.gif' width={712} height={384} className='w-full'/>
+        {/* <Link href="#" className=''>
+        <Image alt="mansour" width={712} height={384} src='/banners/1.jpg'  className= "w-full"/>
+        </Link>
+        
+        <Link href="#" className=''>
+        <Image alt="mansour" width={712} height={384} src='/banners/2.jpg'  className= "w-full"/>
+        </Link>
+        <Link href="#" className=''>
+        <Image alt="mansour" width={712} height={384} src='/banners/3.jpg'  className= "w-full"/>
+        </Link>
+        <Link href="#" className=''>
+        <Image alt="mansour" width={712} height={384} src='/banners/4.gif'  className= "w-full"/>
+        </Link> */}
       </Carousel>
     );
   }
