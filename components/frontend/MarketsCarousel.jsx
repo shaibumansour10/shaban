@@ -7,7 +7,7 @@ import Carousel from "react-multi-carousel";
 import Image from "next/image"
 import "react-multi-carousel/lib/styles.css";
 import Link from 'next/link';
-export default function MarketsCarousel() {
+export default function MarketsCarousel({markets}) {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -25,9 +25,7 @@ export default function MarketsCarousel() {
       slidesToSlide: 1 // optional, default to 1.
     }
   };
-  const slides=[
-    {},{},{},{},{},{},{},{},{},{}
-  ]
+  
   return (
   
     <Carousel
@@ -49,14 +47,18 @@ export default function MarketsCarousel() {
     itemClass="px-2"
   >
     {
-     slides.map((slide,i)=>{
-      return(
-        <Link key={i} href="#" alt="shaibu" className='rounded-lg mr-3 border bg-red-500'>
-  <Image src="/8.webp" width={556} height={556} className='w-full rounded-lg'/>
-  <h2 className='text-center tdark:text-whitetext-black bg-slate-600 dark:bg-black rounded-md'>mobile</h2>
-    </Link>
-      )
-     })
+     markets.length>0? (
+      markets.map((market,i)=>{
+        return(
+          <Link key={i} href="#" alt="" className='rounded-2xl mr-3 border bg-red-500'>
+    <Image src={market.logoUrl} width={556} height={556} className='w-full rounded-lg' alt={market.title}/>
+    <h2 className='text-center tdark:text-whitetext-black bg-slate-600 dark:bg-black rounded-md'>{market.title}</h2>
+      </Link>
+        )
+       })
+     ): (
+      <p>the markets are not available</p>
+     )
     }
   </Carousel>
   )

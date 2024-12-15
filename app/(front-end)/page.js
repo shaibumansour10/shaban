@@ -4,24 +4,28 @@ import Hero from "@/components/frontend/Hero"
 import MarketList from "@/components/frontend/MarketList"
 import CategoryList from "@/components/frontend/CategoryList"
 import CommunityTraining from "@/components/frontend/CommunityTraining"
-export default function Home() {
+import { getData } from '@/lib/getData'
+export default async function Home() {
+  const categories=await getData('categories')
   return (
     <div className="min-h-screen shadow-xl ">
       
         <Hero/>
         <MarketList/>
-       <div className="py-4">
-       <CategoryList/>
+       {
+        categories.length>0?(
+          categories.map((category,i)=>{
+            return(
+              <div className="py-4" key={i}>
+       <CategoryList category={category}/>
        </div>
-       <div className="py-4">
-       <CategoryList/>
-       </div>
-       <div className="py-4">
-       <CategoryList/>
-       </div>
-       <div className="py-4">
-       <CategoryList/>
-       </div>
+            )
+          })
+        ):(
+          <p>no category available</p>
+        )
+       }
+       
        <div className="py-4">
        <CommunityTraining/>
        </div>

@@ -1,43 +1,23 @@
+
 import React from 'react'
 import Image from 'next/image'
 import Link from "next/link";
 import HeroCarousel from "./HeroCarousel";
+import SidebarCategories from "./SiderbarCategories";
 import Advert from "../../public/Advert.gif"
 import { CircleDollarSign, FolderSync, HelpCircle } from 'lucide-react';
+import { getData } from '@/lib/getData';
 
-export default function Hero() {
-  const categories = [
-    {}, {}, {},
-    {}, {}, {},
-    {}, {}, {},
-  ];
-
+export default async function Hero() {
+  
+const banners =await getData('banners')
   return (
     <div className='grid grid-cols-12 gap-8 mb-6'>
       {/* Sidebar */}
-      <div className="col-span-12 sm:col-span-3 bg-white border border-gray-300 rounded-lg overflow-hidden dark:bg-gray-800 dark:border-gray-700 hidden sm:block">
-        <h2 className='bg-slate-100 py-4 px-3 dark:bg-slate-500 font-semibold border-b border-gray-300'>Shop by Categories</h2>
-        <div className="flex flex-col py-4 px-3 h-[300px] overflow-y-auto gap-3">
-          {categories.map((category, i) => {
-            return (
-              <Link key={i} href="#" className='flex items-center gap-3 hover:bg-slate-300 duration-500 transition-all'>
-                <Image
-                  src='/love.webp'
-                  alt='user profile'
-                  width={556}
-                  height={556}
-                  className='w-10 h-10 rounded-full object-cover border-2 border-lime-400'
-                />
-                <span className='text-sm'>Vegetable</span>
-              </Link>
-            );
-          })}
-        </div>
-      </div>
-
+     <SidebarCategories/>
       {/* Hero Carousel */}
       <div className="col-span-12 sm:col-span-7 bg-blue-700 h-[384px] rounded-md">
-        <HeroCarousel />
+        <HeroCarousel banners={banners}/>
       </div>
 
       {/* Right Sidebar */}

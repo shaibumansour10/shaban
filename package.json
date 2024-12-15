@@ -29,6 +29,7 @@
     "next-themes": "^0.3.0",
     "nuka-carousel": "^8.1.1",
     "react": "^19.0.0",
+    "react-bootstrap": "^2.10.7",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.53.1",

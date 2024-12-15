@@ -1,8 +1,10 @@
 import Link from 'next/link'
 import React from 'react'
 import TrainingCarousel from './TrainingCarousel'
+import { getData } from '@/lib/getData'
 
-export default function CommunityTraining() {
+export default async function CommunityTraining() {
+  const trainings = await getData('community')
   return (
     <div className='bg-white border border-gray-300 rounded-lg overflow-hidden dark:bg-gray-800 dark:border-gray-700 '>
       <div className='flex justify-between items-center bg-slate-100 py-4 px-3 dark:bg-slate-500 font-semibold border-b border-gray-300'>
@@ -11,7 +13,7 @@ export default function CommunityTraining() {
        
         </div>
         <div className="bg-white p-4">
-        <TrainingCarousel/>
+        <TrainingCarousel trainings={trainings}/>
         </div>
     </div>
   )

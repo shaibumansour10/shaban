@@ -45,7 +45,7 @@ import {Carousel} from 'nuka-carousel';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
-export  default function HeroCarousel() {
+export  default function HeroCarousel({banners}) {
   const  config = {
     // containerClassName: "rounded-full h-12 w-12 overflow-hidden",
     // nextButtonClassName: "string",
@@ -63,12 +63,20 @@ export  default function HeroCarousel() {
     return (
       <Carousel autoplay defaultControlsConfig={config} className='rounded-md overflow-hidden' 
       wrapAround  >
-        <img alt="mansour" src='/banners/1.jpg'width={712} height={384} className='w-full'/>
-        <img alt="mansour" src='/banners/2.jpg'width={712} height={384} className='w-full'/>
-        <img alt="mansour" src='/banners/3.jpg' width={712} height={384} className='w-full'/>
-        <img alt="mansour" src='/banners/3.jpg' width={712} height={384} className='w-full'/>
-        <img alt="mansour" src='/banners/5.jpg' width={712} height={384} className='w-full'/>
-        <img alt="mansour" src='/banners/4.gif' width={712} height={384} className='w-full'/>
+        {
+          banners.length>0 ?(
+            banners.map((banner,i)=>{
+              return(
+               <Link key={i} href={banner.link} className='' >
+                <Image  alt={banner.title} src={banner.imageUrl} width={712} height={384} className='w-full'/>
+               </Link>
+              )
+            })
+          ) : (
+            <p>the banners not available</p>
+          )
+        }
+        
         {/* <Link href="#" className=''>
         <Image alt="mansour" width={712} height={384} src='/banners/1.jpg'  className= "w-full"/>
         </Link>
