@@ -143,6 +143,7 @@ function redirect(){
             errors={errors}
             className="w-full"
             option={farmers}
+            
             />
             <ToggleInput 
           label="Supports Wholesale selling"
