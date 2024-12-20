@@ -48,7 +48,7 @@ export default function CategoryCarousel({products}) {
     itemClass="px-2"
   >
     {
-      products.length>0? (
+     products && products.length > 0 ? (
 
      products.map((product,i)=>{
       return(
