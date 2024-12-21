@@ -2,8 +2,9 @@ import React from 'react'
 import BreadCrumb from '../../../../components/frontend/BreadCrumb'
 import {getData} from "@/lib/getData"
 import Image from "next/image"
-import { BaggageClaim, Minus, Plus, Share2, Tag } from 'lucide-react'
+import { BaggageClaim, Minus, Plus, Send, Share2, Tag } from 'lucide-react'
 import CategoryCarousel from "@/components/frontend/CategoryCarousel"
+import Link from 'next/link'
 export default async function productDetailPage({params:{slug}}) {
   const category= await getData("categories")
   return (
@@ -62,7 +63,7 @@ Flowbite includes two styles of breadcrumb elements, one that has a transparent 
       </div> */}
       <div className="flex flex-col lg:grid lg:grid-cols-12 md:grid md:grid-cols-12 gap-8">
   <div className="lg:col-span-3">
-    <Image src="/7.jpeg" alt="mnasour" width={556} height={566} className="w-full" />
+    <Image src="/7.jpeg" alt="mnasour" width={556} height={566} className="w-full rounded-3xl" />
   </div>
   <div className="lg:col-span-6">
     <div className="flex items-center justify-between mb-6">
@@ -115,7 +116,48 @@ Flowbite includes two styles of breadcrumb elements, one that has a transparent 
   <div className="lg:col-span-3 bg-white border border-gray-300 rounded-lg overflow-hidden dark:bg-gray-800 dark:border-gray-700 hidden sm:block">
     <h2 className="bg-slate-100 py-4 px-3 dark:bg-slate-500 font-semibold border-b border-gray-300">
       DELIVERY & RETURNS
+
     </h2>
+   <div className="p-4 ">
+   <div className="flex flex-col border-b border-gray-500">
+   <div className="flex rounded-lg py-2 px-4 bg-orange-400 text-slate-50 items-center gap-3  ">
+      <span>mansour Express</span>
+      <Send/>
+    </div>
+    <div className='py-3'>Eligible for free Delivery. 
+      <Link href="#" className='text-red-400'>View Details</Link>
+    </div>
+   </div>
+    <h2 className='py-2'>Choose your Location</h2>
+   <div className="border-b border-gray-500 py-4">
+   <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-lime-500 focus:border-lime-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-lime-500 dark:focus:border-lime-500">
+    <option selected>Choose a country</option>
+    <option value="US">United States</option>
+    <option value="CA">Canada</option>
+    <option value="FR">France</option>
+    <option value="DE">Germany</option>
+  </select>
+   </div>
+   <div className="border-b border-gray-500 py-4">
+   <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-lime-500 focus:border-lime-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-lime-500 dark:focus:border-lime-500">
+    <option selected>Choose a country</option>
+    <option value="US">United States</option>
+    <option value="CA">Canada</option>
+    <option value="FR">France</option>
+    <option value="DE">Germany</option>
+  </select>
+   </div>
+   <div className="border-b border-gray-500 py-4">
+   <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-lime-500 focus:border-lime-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-lime-500 dark:focus:border-lime-500">
+    <option selected>Choose a country</option>
+    <option value="US">United States</option>
+    <option value="CA">Canada</option>
+    <option value="FR">France</option>
+    <option value="DE">Germany</option>
+  </select>
+   </div>
+
+   </div>
   </div>
 </div>
 
