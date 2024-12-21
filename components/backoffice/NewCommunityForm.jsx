@@ -100,10 +100,10 @@ function redirect(){
             label="Community Thumbnail"
           />
           {/* content */}
-          <QuillEditor content={content} setContent={setContent}
+          {/* <QuillEditor content={content} setContent={setContent}
           label="Blog content"
           className="sm:col-span-2"
-          />
+          /> */}
           {/* content end  */}
           
           <ToggleInput 

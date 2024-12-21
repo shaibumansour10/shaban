@@ -40,7 +40,7 @@
     "lib/apiRequest.js",
     "components/frontend/Sparkles.jsx",
     ".next/types/app/(front-end)/page.jsx"
-  ],
+, "app/(back-office)/dashboard/payments/data-table.jsx", "app/(back-office)/dashboard/payments/page.jsx", "app/(back-office)/dashboard/payments/columns.jsx"  ],
   "exclude": [
     "node_modules"
   ]
