@@ -38,31 +38,13 @@ export const columns = [
   },
   {
     accessorKey: "imageUrl",
-    header: "Category Image ",
+    header: "Product Image ",
     cell: ({ row }) => (<ImageColumn row={row} imageTitle="imageUrl"/>)
   },
   {
-    accessorKey: "description",
-    header: "Description",
-    cell: ({ row }) => {
-      const description= row.getValue("description")
-     
-      return <div className="line-clamp-1">
-       {description}
-      </div>
-    },
+    accessorKey: "farmerId",
+    header: "Farmer Id",
   },
-  //  {
-  //   accessorKey: "description",
-  //   header: "Description",
-  //   cell: ({ row }) => {
-  //     const description= row.getValue("description")
-     
-  //     return <div className="line-clamp-1">
-  //      {description}
-  //     </div>
-  //   },
-  // },
   {
     accessorKey: "isActive",
     header: "IsActive",

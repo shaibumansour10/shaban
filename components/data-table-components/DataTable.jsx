@@ -15,14 +15,14 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+// import { Button } from "@/components/ui/button"
+// import { Input } from "@/components/ui/input"
+// import {
+//   DropdownMenu,
+//   DropdownMenuCheckboxItem,
+//   DropdownMenuContent,
+//   DropdownMenuTrigger,
+// } from "@/components/ui/dropdown-menu"
 import {
   Table,
   TableBody,
@@ -33,7 +33,7 @@ import {
 } from "@/components/ui/table"
 
 import { DataTablePagination } from "./DataTablePagination"
-// import { DataTableToolbar } from "./DataTableToolbar"
+import { DataTableToolbar } from "./DataTableToolbar"
 
 
 export default function DataTable({
@@ -69,10 +69,10 @@ export default function DataTable({
 
   return (
     <div className="">
-      <div className="flex items-center py-4">
+      {/* <div className="flex items-center py-4">
     <Input
       placeholder="Filter Title..."
-      value={(table.getColumn("title")?.getFilterValue()) ?? ""}
+      value={table.getColumn("title")?.getFilterValue?.()?? ""}
       onChange={(event) =>
         table.getColumn("title")?.setFilterValue(event.target.value)
       }
@@ -106,9 +106,9 @@ export default function DataTable({
           })}
       </DropdownMenuContent>
     </DropdownMenu>
-  </div>
+  </div> */}
     <div className="space-y-4">
-      {/* <DataTableToolbar table={table} /> */}
+      <DataTableToolbar table={table} />
       <div className="rounded-md border">
         <Table>
           <TableHeader>

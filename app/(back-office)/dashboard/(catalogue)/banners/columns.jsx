@@ -1,13 +1,22 @@
 "use client"
-
+import { MoreHorizontal ,ArrowUpDown} from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Button } from "@/components/ui/button"
 import ActionTable from "@/components/DataTableColumns/ActionColumn"
 
 import SortTableColumn from "@/components/DataTableColumns/SortTableColumn"
 import ImageColumn from "@/components/DataTableColumns/ImageColumn"
 import DateColumn from "@/components/DataTableColumns/DateColumn"
-
-
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import Image from "next/image"
 
 export const columns = [
   {
@@ -38,34 +47,27 @@ export const columns = [
   },
   {
     accessorKey: "imageUrl",
-    header: "Category Image ",
-    cell: ({ row }) => (<ImageColumn row={row} imageTitle="imageUrl"/>)
+    header: "Banner Image ",
+    cell: ({ row }) => (<ImageColumn row={row} accessorKey="imageUrl"/>)
   },
-  {
-    accessorKey: "description",
-    header: "Description",
-    cell: ({ row }) => {
-      const description= row.getValue("description")
+//   {
+//     accessorKey: "description",
+//     header: "Description",
+//     cell: ({ row }) => {
+//       const description= row.getValue("description")
      
-      return <div className="line-clamp-1">
-       {description}
-      </div>
-    },
-  },
-  //  {
-  //   accessorKey: "description",
-  //   header: "Description",
-  //   cell: ({ row }) => {
-  //     const description= row.getValue("description")
-     
-  //     return <div className="line-clamp-1">
-  //      {description}
-  //     </div>
-  //   },
-  // },
+//       return <div className="line-clamp-1">
+//        {description}
+//       </div>
+//     },
+//   },
   {
     accessorKey: "isActive",
     header: "IsActive",
+  },
+  {
+    accessorKey: "link",
+    header: "Banner Link",
   },
   {
     accessorKey: "createdAt",
@@ -74,6 +76,6 @@ export const columns = [
   },
   {
     id: "actions",
-    cell: ({ row }) => (<ActionTable row={row} title="Category"/>)
+    cell: ({ row }) => (<ActionTable row={row} title="Banner"/>)
   },
 ]

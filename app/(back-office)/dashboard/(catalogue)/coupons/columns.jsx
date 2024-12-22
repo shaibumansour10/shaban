@@ -1,12 +1,11 @@
 "use client"
 
 import { Checkbox } from "@/components/ui/checkbox"
+
 import ActionTable from "@/components/DataTableColumns/ActionColumn"
 
 import SortTableColumn from "@/components/DataTableColumns/SortTableColumn"
-import ImageColumn from "@/components/DataTableColumns/ImageColumn"
 import DateColumn from "@/components/DataTableColumns/DateColumn"
-
 
 
 export const columns = [
@@ -36,33 +35,28 @@ export const columns = [
     accessorKey: "title",
     header: ({ column }) => (<SortTableColumn column={column} title="Title"/>)
   },
+  
+//   {
+//     accessorKey: "description",
+//     header: "Description",
+//     cell: ({ row }) => {
+//       const description= row.getValue("description")
+     
+//       return <div className="line-clamp-1">
+//        {description}
+//       </div>
+//     },
+//   },
+ 
   {
-    accessorKey: "imageUrl",
-    header: "Category Image ",
-    cell: ({ row }) => (<ImageColumn row={row} imageTitle="imageUrl"/>)
+    accessorKey: "couponCode",
+    header: "Coupon Code",
   },
   {
-    accessorKey: "description",
-    header: "Description",
-    cell: ({ row }) => {
-      const description= row.getValue("description")
-     
-      return <div className="line-clamp-1">
-       {description}
-      </div>
-    },
+    accessorKey: "expiryDate",
+    header: "Expiry Date",
+    cell: ({ row }) => (<DateColumn row={row} accessorKey="expiryDate" />)
   },
-  //  {
-  //   accessorKey: "description",
-  //   header: "Description",
-  //   cell: ({ row }) => {
-  //     const description= row.getValue("description")
-     
-  //     return <div className="line-clamp-1">
-  //      {description}
-  //     </div>
-  //   },
-  // },
   {
     accessorKey: "isActive",
     header: "IsActive",
@@ -70,10 +64,10 @@ export const columns = [
   {
     accessorKey: "createdAt",
     header: "Date Created",
-    cell: ({ row }) => (<DateColumn row={row} accessorKey="createdAt"/>)
+    cell: ({ row }) => (<DateColumn row={row} accessorKey="createdAt" />)
   },
   {
     id: "actions",
-    cell: ({ row }) => (<ActionTable row={row} title="Category"/>)
+    cell: ({ row }) => (<ActionTable row={row} title="Coupon"/>)
   },
 ]
