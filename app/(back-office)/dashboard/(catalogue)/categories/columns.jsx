@@ -50,7 +50,6 @@ export const columns = [
       )
     },
   },
-  
   {
     accessorKey: "imageUrl",
     header: "Category Image ",
@@ -62,17 +61,17 @@ export const columns = [
       </div>
     },
   },
-  // {
-  //   accessorKey: "description",
-  //   header: "Description",
-  //   cell: ({ row }) => {
-  //     const description= row.getValue("description")
+//   {
+//     accessorKey: "description",
+//     header: "Description",
+//     cell: ({ row }) => {
+//       const description= row.getValue("description")
      
-  //     return <div className="line-clamp-1">
-  //      {description}
-  //     </div>
-  //   },
-  // },
+//       return <div className="line-clamp-1">
+//        {description}
+//       </div>
+//     },
+//   },
   {
     accessorKey: "isActive",
     header: "IsActive",

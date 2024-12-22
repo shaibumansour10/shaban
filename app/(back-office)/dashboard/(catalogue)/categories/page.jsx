@@ -1,19 +1,22 @@
 import React from 'react'
-
+import {getData }from "@/lib/getData"
+import {  columns } from "./columns"
 import PageHeader from "@/components/backoffice/PageHeader"
 import TableAction from "@/components/backoffice/TableAction"
+import DataTable from '../../../../../components/data-table-components/DataTable'
 
-export default function page() {
+export default async function page() {
+  const categories =await getData("categories")
   return (
     <div>
       {/*Header */}
       <PageHeader heading="Categories" linkTitle="Add Category" href="/dashboard/categories/new" />
 
       {/*Table  Action*/}
-      {/*Export // saerch // Bulk delete*/}
-    <TableAction/>
+     
+    
       <div className="py-4">
-        Table
+      <DataTable data={categories} columns={columns} />
       </div>
 
     </div>
