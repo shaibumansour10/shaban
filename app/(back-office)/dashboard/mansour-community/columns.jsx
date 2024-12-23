@@ -1,7 +1,7 @@
 "use client"
 
 import { Checkbox } from "@/components/ui/checkbox"
-import ActionTable from "@/components/DataTableColumns/ActionColumn"
+import ActionColumn from "@/components/DataTableColumns/ActionColumn"
 
 import SortTableColumn from "@/components/DataTableColumns/SortTableColumn"
 import ImageColumn from "@/components/DataTableColumns/ImageColumn"
@@ -66,8 +66,9 @@ export const columns = [
     cell: ({ row }) => {
       const community=row.original
       return (
-      <ActionTable row={row} title="Community"
-        endpoint={`community/${community.id}`}/>)
+      <ActionColumn row={row} title="Community"
+        endpoint={`community/${community.id}`}
+        editEndpoint={`mansour-community/update/{community.id}`}/>)
     }
   },
 ]

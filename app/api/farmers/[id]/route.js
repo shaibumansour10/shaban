@@ -3,12 +3,12 @@ import { NextResponse } from "next/server";
 
 export async function GET(request,{params:{id}}) {
     try {
-        const farmer = await db.farmer.findUnique({
+        const farmer = await db.user.findUnique({
             where: {
                 id
             },
             include:{
-                products:true,
+                farmerProfile:true,
             },
         });
         
@@ -26,27 +26,27 @@ export async function GET(request,{params:{id}}) {
 
 export async function DELETE(request,{params:{id}}) {
     try {
-        const existingFarmer = await db.farmer.findUnique({
+        const existingUser = await db.user.findUnique({
             where: {
                 id
             },
         });
-        if(!existingFarmer){
+        if(!existingUser){
             return NextResponse.json({
                 data:null,
-                message:"farmer Not found"
+                message:"User Not found"
             },{status:404});
         }
-         const deletedFarmer =await db.farmer.delete({
+         const deletedUser =await db.user.delete({
             where: {
                 id
             }, 
          })
-        return NextResponse.json(deletedFarmer);
+        return NextResponse.json(deletedUser);
     } catch (error) {
-        console.error("Error deleting farmer:", error.message);
+        console.error("Error deleting user :", error.message);
         return NextResponse.json({
-            message: "Failed to delete farmer",
+            message: "Failed to delete user",
             error: error.message
         }, { status: 500 });
     }

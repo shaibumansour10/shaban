@@ -2,7 +2,7 @@
 
 import { Checkbox } from "@/components/ui/checkbox"
 
-import ActionTable from "@/components/DataTableColumns/ActionColumn"
+import ActionColumn from "@/components/DataTableColumns/ActionColumn"
 
 import SortTableColumn from "@/components/DataTableColumns/SortTableColumn"
 import ImageColumn from "@/components/DataTableColumns/ImageColumn"
@@ -70,8 +70,9 @@ export const columns = [
     cell: ({ row }) => {
       const banner=row.original
       return (
-      <ActionTable row={row} title="Banner"
-        endpoint={`banners/${banner.id}`}/>)
+      <ActionColumn row={row} title="Banner"
+        endpoint={`banners/${banner.id}`}
+        editEndpoint={`banners/update/${banner.id}`}/>)
     }
   },
 ]

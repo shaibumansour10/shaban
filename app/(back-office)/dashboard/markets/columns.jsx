@@ -1,7 +1,7 @@
 "use client"
 
 import { Checkbox } from "@/components/ui/checkbox"
-import ActionTable from "@/components/DataTableColumns/ActionColumn"
+import ActionColumn from "@/components/DataTableColumns/ActionColumn"
 
 import SortTableColumn from "@/components/DataTableColumns/SortTableColumn"
 import ImageColumn from "@/components/DataTableColumns/ImageColumn"
@@ -66,8 +66,9 @@ export const columns = [
     cell: ({ row }) => {
       const market=row.original
       return (
-      <ActionTable row={row} title="Market"
-        endpoint={`markets/${market.id}`}/>)
+      <ActionColumn row={row} title="Market"
+        endpoint={`markets/${market.id}`}
+        editEndpoint={`markets/update/${market.id}`}/>)
     }
   },
 ]

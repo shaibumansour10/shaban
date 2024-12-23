@@ -8,12 +8,15 @@ import {
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
   import DeleteButton from "../actions/DeleteButton"
+  import EditBtn from "../actions/EditBtn"
   import { Button } from "@/components/ui/button"
   import { MoreHorizontal ,ArrowUpDown} from "lucide-react"
 
-export default function ActionColumn({row ,title,endpoint}) {
+export default function ActionColumn({row ,title,endpoint,editEndpoint}) {
 
-  const isActive = row.isActive
+  // const isActive = row.isActive
+  // const id=row.original.id;
+  // const editEndpoint=`categorie`
  
       return (
         <DropdownMenu>
@@ -31,7 +34,9 @@ export default function ActionColumn({row ,title,endpoint}) {
             <DropdownMenuItem>
              <DeleteButton title={title} endpoint={endpoint}/> 
             </DropdownMenuItem>
-            <DropdownMenuItem>Edit {title}</DropdownMenuItem>
+            <DropdownMenuItem>
+              <EditBtn title={title} editEndpoint={editEndpoint} />
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

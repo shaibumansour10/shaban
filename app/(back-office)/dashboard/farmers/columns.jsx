@@ -1,7 +1,7 @@
 "use client"
 
 import { Checkbox } from "@/components/ui/checkbox"
-import ActionTable from "@/components/DataTableColumns/ActionColumn"
+import ActionColumn from "@/components/DataTableColumns/ActionColumn"
 
 import SortTableColumn from "@/components/DataTableColumns/SortTableColumn"
 import ImageColumn from "@/components/DataTableColumns/ImageColumn"
@@ -36,14 +36,14 @@ export const columns = [
     accessorKey: "name",
     header: ({ column }) => (<SortTableColumn column={column} title="Name"/>)
   },
+  // {
+  //   accessorKey: "profileImageUrl",
+  //   header: "DP ",
+  //   cell: ({ row }) => (<ImageColumn row={row} imageTitle="profileImageUrl"/>)
+  // },
   {
-    accessorKey: "profileImageUrl",
-    header: "DP ",
-    cell: ({ row }) => (<ImageColumn row={row} imageTitle="profileImageUrl"/>)
-  },
-  {
-    accessorKey: "phone",
-    header: "Phone No",
+    accessorKey: "role",
+    header: "Role",
   },
   {
     accessorKey: "email",
@@ -53,10 +53,10 @@ export const columns = [
     accessorKey: "physicalAddress",
     header: "Physical Address",
   },
-  {
-    accessorKey: "isActive",
-    header: "IsActive",
-  },
+  // {
+  //   accessorKey: "isActive",
+  //   header: "IsActive",
+  // },
   {
     accessorKey: "createdAt",
     header: "Date Created",
@@ -67,8 +67,9 @@ export const columns = [
     cell: ({ row }) => {
       const Farmer=row.original
       return (
-      <ActionTable row={row} title="Farmer"
-        endpoint={`farmers/${Farmer.id}`}/>)
+      <ActionColumn row={row} title="Farmer"
+        endpoint={`farmers/${Farmer.id}`}
+        editEndpoint={`farmers/update/${Farmer.id}`}/>)
     }
   },
 ]

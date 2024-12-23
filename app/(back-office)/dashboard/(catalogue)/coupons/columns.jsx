@@ -2,7 +2,7 @@
 
 import { Checkbox } from "@/components/ui/checkbox"
 
-import ActionTable from "@/components/DataTableColumns/ActionColumn"
+import ActionColumn from "@/components/DataTableColumns/ActionColumn"
 
 import SortTableColumn from "@/components/DataTableColumns/SortTableColumn"
 import DateColumn from "@/components/DataTableColumns/DateColumn"
@@ -71,8 +71,9 @@ export const columns = [
     cell: ({ row }) => {
       const coupon=row.original
       return (
-      <ActionTable row={row} title="Coupon"
-        endpoint={`coupons/${coupon.id}`}/>)
+      <ActionColumn row={row} title="Coupon"
+        endpoint={`coupons/${coupon.id}`}
+        editEndpoint={`coupons/update/${coupon.id}`}/>)
     }
   },
 ]

@@ -94,14 +94,20 @@ export async function POST(request) {
 export async function GET(request) {
     try {
         // Fetch all farmer profiles ordered by creation date
-        const profiles = await db.farmerProfile.findMany({
+        const farmers = await db.user.findMany({
             orderBy: {
                 createdAt: "desc",
             },
+            where:{
+                role: "FARMER",
+            },
+            include:{
+                farmerProfile:true
+            }
         });
 
         return NextResponse.json({
-            data: profiles,
+            data: farmers,
             message: "Farmer profiles fetched successfully.",
         });
 
