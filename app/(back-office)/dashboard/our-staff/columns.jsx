@@ -33,36 +33,30 @@ export const columns = [
     enableHiding: false,
   },
   {
-    accessorKey: "title",
-    header: ({ column }) => (<SortTableColumn column={column} title="Title"/>)
+    accessorKey: "name",
+    header: ({ column }) => (<SortTableColumn column={column} title="Name"/>)
   },
   {
     accessorKey: "imageUrl",
-    header: "Category Image ",
+    header: "profile ",
     cell: ({ row }) => (<ImageColumn row={row} imageTitle="imageUrl"/>)
   },
   {
-    accessorKey: "description",
-    header: "Description",
-    cell: ({ row }) => {
-      const description= row.getValue("description")
-     
-      return <div className="line-clamp-1">
-       {description}
-      </div>
-    },
+    accessorKey: "phone",
+    header: "Phone No",
   },
-  //  {
-  //   accessorKey: "description",
-  //   header: "Description",
-  //   cell: ({ row }) => {
-  //     const description= row.getValue("description")
-     
-  //     return <div className="line-clamp-1">
-  //      {description}
-  //     </div>
-  //   },
-  // },
+  {
+    accessorKey: "email",
+    header: "Email",
+  },
+  {
+    accessorKey: "physicalAddress",
+    header: "Physical Address",
+  },
+  {
+    accessorKey: "role",
+    header: "Role",
+  },
   {
     accessorKey: "isActive",
     header: "IsActive",
@@ -74,11 +68,6 @@ export const columns = [
   },
   {
     id: "actions",
-    cell: ({ row }) => {
-      const category=row.original
-      return (
-      <ActionTable row={row} title="Category"
-        endpoint={`categories/${category.id}`}/>)
-    }
+    cell: ({ row }) => (<ActionTable row={row} title="Staff"/>)
   },
 ]

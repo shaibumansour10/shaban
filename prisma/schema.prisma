@@ -79,22 +79,22 @@ model Product {
   salePrice       Float
   tags            String[]
 
-  category   Category  @relation(fields: [categoryId], references: [id])
+  category   Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   categoryId String    @db.ObjectId
-  user       User      @relation(fields: [userId], references: [id])
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId     String    @db.ObjectId
   createdAt  DateTime  @default(now())
   updatedAt  DateTime? @updatedAt
 }
 
 model Community {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
   isActive    Boolean
-  slug        String   @unique
+  slug        String    @unique
   title       String
   description String?
-  category    Category @relation(fields: [categoryId], references: [id])
-  categoryId  String   @db.ObjectId
+  category    Category? @relation(fields: [categoryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  categoryId  String    @db.ObjectId
 
   content   String
   imageUrl  String
@@ -144,7 +144,7 @@ model FarmerProfile {
   landSize           Float
   mainCrop           String
 
-  user      User      @relation(fields: [userId], references: [id])
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId    String    @unique @db.ObjectId
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt

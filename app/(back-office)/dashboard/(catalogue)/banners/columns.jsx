@@ -8,15 +8,7 @@ import ActionTable from "@/components/DataTableColumns/ActionColumn"
 import SortTableColumn from "@/components/DataTableColumns/SortTableColumn"
 import ImageColumn from "@/components/DataTableColumns/ImageColumn"
 import DateColumn from "@/components/DataTableColumns/DateColumn"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import Image from "next/image"
+
 
 export const columns = [
   {
@@ -76,6 +68,11 @@ export const columns = [
   },
   {
     id: "actions",
-    cell: ({ row }) => (<ActionTable row={row} title="Banner"/>)
+    cell: ({ row }) => {
+      const banner=row.original
+      return (
+      <ActionTable row={row} title="Banner"
+        endpoint={`banners/${banner.id}`}/>)
+    }
   },
 ]

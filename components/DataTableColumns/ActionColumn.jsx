@@ -7,11 +7,13 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
+  import DeleteButton from "../actions/DeleteButton"
   import { Button } from "@/components/ui/button"
   import { MoreHorizontal ,ArrowUpDown} from "lucide-react"
 
-export default function ActionColumn({row}) {
-    const isActive = row.isActive
+export default function ActionColumn({row ,title,endpoint}) {
+
+  const isActive = row.isActive
  
       return (
         <DropdownMenu>
@@ -26,7 +28,9 @@ export default function ActionColumn({row}) {
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Delate {title}</DropdownMenuItem>
+            <DropdownMenuItem>
+             <DeleteButton title={title} endpoint={endpoint}/> 
+            </DropdownMenuItem>
             <DropdownMenuItem>Edit {title}</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

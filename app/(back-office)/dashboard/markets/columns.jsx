@@ -37,9 +37,9 @@ export const columns = [
     header: ({ column }) => (<SortTableColumn column={column} title="Title"/>)
   },
   {
-    accessorKey: "imageUrl",
-    header: "Category Image ",
-    cell: ({ row }) => (<ImageColumn row={row} imageTitle="imageUrl"/>)
+    accessorKey: "logoUrl",
+    header: "Market Logo ",
+    cell: ({ row }) => (<ImageColumn row={row} imageTitle="logoUrl"/>)
   },
   {
     accessorKey: "description",
@@ -52,17 +52,6 @@ export const columns = [
       </div>
     },
   },
-  //  {
-  //   accessorKey: "description",
-  //   header: "Description",
-  //   cell: ({ row }) => {
-  //     const description= row.getValue("description")
-     
-  //     return <div className="line-clamp-1">
-  //      {description}
-  //     </div>
-  //   },
-  // },
   {
     accessorKey: "isActive",
     header: "IsActive",
@@ -74,11 +63,6 @@ export const columns = [
   },
   {
     id: "actions",
-    cell: ({ row }) => {
-      const category=row.original
-      return (
-      <ActionTable row={row} title="Category"
-        endpoint={`categories/${category.id}`}/>)
-    }
+    cell: ({ row }) => (<ActionTable row={row} title="Category"/>)
   },
 ]

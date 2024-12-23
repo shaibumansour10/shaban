@@ -36,9 +36,7 @@ import { DataTablePagination } from "./DataTablePagination"
 import { DataTableToolbar } from "./DataTableToolbar"
 
 
-export default function DataTable({
-  columns,
-  data,
+export default function DataTable({columns,data, filterKeys=["title"],
 }) {
   const [rowSelection, setRowSelection] =useState({})
   const [columnVisibility, setColumnVisibility] =useState({})
@@ -108,7 +106,7 @@ export default function DataTable({
     </DropdownMenu>
   </div> */}
     <div className="space-y-4">
-      <DataTableToolbar table={table} />
+      <DataTableToolbar table={table} filterKeys={filterKeys} />
       <div className="rounded-md border">
         <Table>
           <TableHeader>

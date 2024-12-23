@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(request,{params:{id}}) {
     try {
-        const category = await db.category.findUnique({
+        const banner = await db.banner.findUnique({
             where: {
                 id
             },
@@ -13,11 +13,11 @@ export async function GET(request,{params:{id}}) {
         });
         
 
-        return NextResponse.json(category);
+        return NextResponse.json(banner);
     } catch (error) {
-        console.error("Error fetching category:", error.message);
+        console.error("Error fetching banner:", error.message);
         return NextResponse.json({
-            message: "Failed to fetch category",
+            message: "Failed to fetch banner",
             error: error.message
         }, { status: 500 });
     }
@@ -26,27 +26,27 @@ export async function GET(request,{params:{id}}) {
 
 export async function DELETE(request,{params:{id}}) {
     try {
-        const existingCategory = await db.category.findUnique({
+        const existingBanner = await db.banner.findUnique({
             where: {
                 id
             },
         });
-        if(!existingCategory){
+        if(!existingBanner){
             return NextResponse.json({
                 data:null,
-                message:"category Not found"
+                message:"banner Not found"
             },{status:404});
         }
-         const deletedCategory =await db.category.delete({
+         const deletedBanner =await db.banner.delete({
             where: {
                 id
             }, 
          })
-        return NextResponse.json(deletedCategory);
+        return NextResponse.json(deletedBanner);
     } catch (error) {
-        console.error("Error deleting category:", error.message);
+        console.error("Error deleting banner:", error.message);
         return NextResponse.json({
-            message: "Failed to delete category",
+            message: "Failed to delete banner",
             error: error.message
         }, { status: 500 });
     }

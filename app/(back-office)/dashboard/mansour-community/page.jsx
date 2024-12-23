@@ -1,19 +1,18 @@
 import React from 'react'
-
+import {columns} from "./columns"
 import PageHeader from "@/components/backoffice/PageHeader"
-import TableAction from "@/components/backoffice/TableAction"
+import DataTable from '@/components/data-table-components/DataTable'
+import { getData } from '@/lib/getData'
 
-export default function page() {
+export default async function page() {
+  const community =await getData("community")
   return (
     <div>
       {/*Header */}
       <PageHeader heading="Mansour Communities" linkTitle="Add Community" href="/dashboard/mansour-community/new" />
 
-      {/*Table  Action*/}
-      {/*Export // saerch // Bulk delete*/}
-    <TableAction/>
       <div className="py-4">
-        Table
+      <DataTable data={community} columns={columns} />
       </div>
 
     </div>
