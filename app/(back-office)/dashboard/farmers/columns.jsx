@@ -64,6 +64,11 @@ export const columns = [
   },
   {
     id: "actions",
-    cell: ({ row }) => (<ActionTable row={row} title="Category"/>)
+    cell: ({ row }) => {
+      const Farmer=row.original
+      return (
+      <ActionTable row={row} title="Farmer"
+        endpoint={`farmers/${Farmer.id}`}/>)
+    }
   },
 ]

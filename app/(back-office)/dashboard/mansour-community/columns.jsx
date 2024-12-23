@@ -63,6 +63,11 @@ export const columns = [
   },
   {
     id: "actions",
-    cell: ({ row }) => (<ActionTable row={row} title="Category"/>)
+    cell: ({ row }) => {
+      const community=row.original
+      return (
+      <ActionTable row={row} title="Community"
+        endpoint={`community/${community.id}`}/>)
+    }
   },
 ]
