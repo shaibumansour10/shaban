@@ -1,6 +1,6 @@
 "use client"
 import { generateSlug } from "@/lib/generateSlug"
-import { makePostRequest } from "@/lib/apiRequest"
+import { makePostRequest, makePutRequest } from "@/lib/apiRequest"
 import TextAreaInput from "@/components/formInputs/TextAreaInput"
 import SubmitButton from "@/components/formInputs/SubmitButton"
 import TextInput from "@/components/formInputs/TextInput"
@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form"
 import{ useRouter} from "next/navigation"
 export default function NewCategoryForm({updateData={}}) {
     const initialImageUrl=updateData?.imageUrl??""
+    const id= updateData?.id??""
   const [imageUrl, setImageUrl] = useState(initialImageUrl)
   // const markets = []
   const [loading, setLoading] = useState(false)
@@ -35,15 +36,30 @@ function redirect(){
     data.slug = slug
     data.imageUrl = imageUrl
     console.log(data);
-    makePostRequest(
-      setLoading,
-      Endpoint,
-      data,
-      resourceName,
-      reset,
-      redirect
-    )
+  if(id){
+//make put request (update)
+makePutRequest(
+  setLoading,
+    `api/categories/${id}`,
+    data,
+    "Category",
+    reset,
+    redirect
+);
 
+  }else{
+//make post request (create)
+makePostRequest(
+  setLoading,
+  Endpoint,
+  data,
+  resourceName,
+  reset,
+  redirect
+);
+setImageUrl("")
+  }
+ 
   }
   return (
     <form
@@ -89,8 +105,8 @@ dark:bg-gray-800 dark:border-gray-700 mx-auto my-3 mt-6">
     </div>
     <SubmitButton
       isLoading={loading}
-      buttonTitle="Create Category"
-      loadingButtonTitle="Create Category please wait..."
+      buttonTitle={id ? "Update Category":"Create Category"}
+      loadingButtonTitle={id? "Updating Category please wait...":"Creating Category please wait..."}
     />
   </form>
   )

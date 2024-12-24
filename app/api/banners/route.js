@@ -87,10 +87,7 @@ export async function GET(request) {
             },
         });
 
-        return NextResponse.json({
-            data: banners,
-            message: "Banners fetched successfully",
-        });
+        return NextResponse.json(banners);
 
     } catch (error) {
         console.error("Error fetching banners:", error.message);
@@ -101,3 +98,25 @@ export async function GET(request) {
         }, { status: 500 });
     }
 }
+
+// export async function GET(request) {
+//     try {
+//         const categories = await db.category.findMany({
+//             orderBy: {
+//                 createdAt: "desc"
+//             },
+//             include:{
+//                 products:true,
+//             },
+//         });
+        
+
+//         return NextResponse.json(categories);
+//     } catch (error) {
+//         console.error("Error fetching categories:", error.message);
+//         return NextResponse.json({
+//             message: "Failed to fetch categories",
+//             error: error.message
+//         }, { status: 500 });
+//     }
+// }
